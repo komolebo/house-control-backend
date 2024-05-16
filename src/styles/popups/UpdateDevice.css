@@ -1,0 +1,40 @@
+ .popup-update-inner {
+    position: absolute;
+    width: 400px;
+    left: 38%;
+    /* right: 38%; */
+    top: 31%;
+    /* bottom: 22%; */
+    margin: auto;
+    background: #14131B;
+  }
+  
+  .popup-text-label {
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20   px;
+    /* line-height: 20px; */
+    padding: 10px;
+    /* identical to box height */
+
+    /* background-color: turquoise; */
+  
+    /* height: 20%; */
+    color: #FFFFFF;
+}
+
+.update-ico {
+  /* margin: 20px; */
+    /* background-color: chocolate; */
+    padding: 40px;
+    height: 150px;
+    /* height: 50%; */
+}
+
+.update-buttons-container{
+  float: right;
+  /* height: 20%; */
+  /* background-color: cornflowerblue; */
+  padding: 20px;
+}

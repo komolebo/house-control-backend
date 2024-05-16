@@ -1,0 +1,17 @@
+.scanned-dev-card-ico {
+    padding: 40px;
+    padding-left: 50px;
+    padding-bottom: 10px;
+    /* background-color: violet; */
+}
+
+.scan-dev-card {
+    width: 200px;
+    height: 180px;
+    padding: 12px;
+    float: left;
+    margin: 20px;
+    /* background-color: burlywood; */
+}
+
+  

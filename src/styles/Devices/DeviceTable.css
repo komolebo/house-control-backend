@@ -1,0 +1,99 @@
+table td:last-child {
+    /* width: 10%; */
+}
+
+#dev-table {
+    background-color: #14131B;
+    width: 100%;
+}
+
+.tableFixHead {
+    height: 78vh;
+    overflow: auto;
+}
+
+.dev-table-header {
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+    height: 20px;
+    text-align: left;
+
+    color: #FFFFFF;
+}
+
+.dev-table-row {
+    text-align: left;
+    /* background-color: lemonchiffon; */
+    height: 100px;
+    padding: 5px;
+    /* outline: thin solid; */
+    /* border: 1px solid white; */
+}
+
+.dev-table-item {
+    /* background-color: lightskyblue; */
+    padding: 20px;
+    padding-right: 30px;
+}
+
+.dev-tab-item-text {
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+
+    color: #5E5E5E;
+}
+
+.battery-item {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.battery-item-text {
+    padding-top: 10px;
+    padding: 5px;
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+}
+
+.battery-item-low {
+    color: #FF0000;;
+}
+.battery-item-middle {
+    color: #ECCB1D;;
+}
+.battery-item-high {
+    color: #0028FE;;
+}
+
+.tamper-item-set {
+    color: #FF0000;
+}
+
+.status-item-set {
+    color: #FF0000;
+}
+
+.settings-item {
+    /* padding-bottom: 10px; */
+    padding-right: 20px;
+    padding-left: 10px;
+    /* background-color: chocolate; */
+    float: right;
+}
+
+.settings-item-disabled {
+    opacity: 0.2;
+}

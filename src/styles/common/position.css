@@ -1,0 +1,48 @@
+.wide {
+    width: 98%;
+}
+
+.cntr-txt {
+    text-align: center;
+}
+
+.cntr-content {
+    display: flex;
+    justify-content: center;
+}
+
+.cntr-v-content {
+    display: flex;
+    align-items: center;
+    /*vertical-align: center;*/
+}
+
+.flexc {
+    display: flex;
+    flex-direction: column;
+}
+.flexr {
+    display: flex;
+    flex-direction: row;
+}
+
+.floatr {
+    float: right;
+}
+.floatl {
+    float: left;
+}
+
+.flexG20 {
+    flex-grow: 20;
+}
+.flexG1 {
+    flex-grow: 1;
+}
+
+.flex-cont-6 {
+    display: flex;
+    flex-wrap: wrap;
+}
+.child-flex-cont-6 {
+}

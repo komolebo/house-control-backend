@@ -1,0 +1,40 @@
+
+.popup-remove-inner {
+    position: absolute;
+    width: 400px;
+    left: 38%;
+    /* right: 38%; */
+    top: 31%;
+    /* bottom: 22%; */
+    margin: auto;
+    background: #14131B;
+  }
+  
+.pop-remove-top {
+    height: 80%;
+    /* background-color: springgreen; */
+    padding-bottom: 50px;
+}
+
+.popup-remove-text-label {
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20   px;
+    /* line-height: 20px; */
+    padding: 10px;
+    /* identical to box height */
+
+    /* background-color: turquoise; */
+  
+    /* height: 20%; */
+    
+}
+
+.remove-ico {
+    margin-top: 20px;
+     /* background-color: chocolate; */
+     /* padding-top: 40px; */
+     height: 120px;
+     /* height: 50%; */
+}

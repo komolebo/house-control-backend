@@ -1,0 +1,77 @@
+.btn {
+    height: 40px;
+    background-color: #82b9e8;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    border: #82b9e8;
+    font-weight: bold;
+    margin: 0 10px;
+    padding: 10px;
+}
+
+.btn:disabled{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+.small-btn {
+    height: 40px;
+    background-color: #82b9e8;
+}
+
+.btn:hover:enabled {
+    outline-color: transparent;
+    outline-style: solid;
+    box-shadow: 0 0 0 2px #2990ff;
+}
+
+.btn:active:enabled {
+    outline-color: transparent;
+    outline-style: solid;
+    box-shadow: 0 0 0 2px #2990ff;
+    background-color: #61aafc;
+}
+
+.modest-btn {
+    background-color: transparent;
+    color: white;
+    font-family: Verdana, sans-serif;
+    font-size: medium;
+}
+
+.rm-btn:hover {
+    box-shadow: 0 0 0 2px #5e0000;
+}
+
+.img-hover:hover {
+    cursor: pointer;
+}
+
+
+.ful-wid-mui-btn {
+    width: 100%;
+}
+.wider-mui-btn {
+    width: 200px;
+}
+.wide-mui-btn {
+    width: 180px;
+}
+.medium-mui-btn {
+    width: 150px;
+}
+.short-mui-btn {
+    width: 130px;
+}
+.shorter-mui-btn {
+    width: 100px;
+}
+.low-mui-btn {
+    height: 24px;
+    width: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #5e0000;
+}

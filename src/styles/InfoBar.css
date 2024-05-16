@@ -1,0 +1,40 @@
+p {
+    color: white;
+}
+
+#infobar {
+    height: 50px;
+    /* background-color: rgb(158, 137, 133); */
+}
+
+#infobar-items {
+    /* background-color: brown; */
+    float: right;
+}
+
+.infobar-item {
+    float: right;
+    padding-left: 16px;   
+    padding-right: 18px;
+    /* background-color: brown; */
+}
+
+.infobar-username {
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    /* line-height: 20px; */
+    /* identical to box height */
+
+    margin-top: 10px;
+    color: #FFFFFF;
+    /* background-color: blueviolet; */
+    float: right;
+    padding-left:16px;
+}
+
+
+.infobar-user-ico{
+    float: right;
+}
