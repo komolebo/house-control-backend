@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../../styles/popups/notification/Notification.css'
-import '../../styles/popups/Common.css'
+import '../../../styles/popups/notification/Notification.module.css'
+import '../../../styles/popups/Common.module.css'
 
 interface IProps {
     onclose: () => void

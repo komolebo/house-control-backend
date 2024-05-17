@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/Devices/DeviceTableHeader.css';
+import '../../styles/Devices/DeviceTableHeader.module.css';
 import {POPUP_TYPE, useGlobalPopupContext} from "../popups/PopupProvider";
 
 function DeviceTableHeader() {

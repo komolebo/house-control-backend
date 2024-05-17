@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { DeviceCardList } from './AddDeviceCardList'
 import { DeviceSetup } from '../SetupDevice'
-import '../../../styles/popups/add/AddDevice.css';
-import '../../styles/popups/Common.css';
-import '../../styles/popups/TextInputComponent.css';
-import '../../styles/popups/SelectComponent.css';
+import '../../../styles/popups/add/AddDevice.module.css';
+import '../../../styles/popups/Common.module.css';
+import '../../../styles/popups/TextInputComponent.module.css';
+import '../../../styles/popups/SelectComponent.module.css';
 import socket from '../../../socketio'
 import {useGlobalPopupContext} from "../PopupProvider";
 import {Button} from "@mui/material";

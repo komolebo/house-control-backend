@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './styles/InfoBar.css';
+import './styles/InfoBar.module.css';
 import {POPUP_TYPE, useGlobalPopupContext} from "./components/popups/PopupProvider";
 
 interface IState {

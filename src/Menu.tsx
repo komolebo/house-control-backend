@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './styles/Menu.css';
+import './styles/Menu.module.css';
 
 interface IState {
     selectedItem: number

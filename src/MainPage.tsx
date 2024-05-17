@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/MainPage.css';
+import './styles/MainPage.module.css';
 import NavMenu from './Menu'
 import InfoBar from './InfoBar'
 import DeviceTableHeader from './components/devices/DeviceTableHeader'

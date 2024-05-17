@@ -1,8 +1,8 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
 
 import {Card, Modal} from "@mui/material";
-import {imgHover} from "../../styles/common/buttons.css";
-import {floatr} from "../../styles/common/position.css";
+import buttonStyles from "../../styles/common/buttons.module.css";
+import positionStyles from "../../styles/common/position.module.css";
 import {AddDevicePopup} from "./add/AddDevice";
 import {NotificationPopup} from "./notification/Notification";
 import EditDevice from "./EditDevice";
@@ -119,11 +119,12 @@ export function PopupProvider({children}: IPropGlobalModal){
                     }}
                     className="blur"
                 >
-                    <div className={floatr} style={{width: 20, height: 20}}
+                    <div className={positionStyles.floatr} style={{width: 20, height: 20}}
                          onClick={() => hidePopup()}
                     >
                         <img alt={"Logo close"}
-                             src={process.env.PUBLIC_URL + "Resources/ico_massege_close.png"} className={imgHover}
+                             src={process.env.PUBLIC_URL + "Resources/ico_massege_close.png"}
+                             className={buttonStyles['img-hover']}
                          />
                     </div>
                     {renderComponent()}

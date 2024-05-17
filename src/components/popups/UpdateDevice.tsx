@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../styles/popups/UpdateDevice.module.css';
-import '../styles/popups/Common.css';
+import '../../styles/popups/Common.module.css';
 import socket from '../../socketio';
 import {PopupProps} from "./PopupProvider";
 import {DeviceAction} from "./SettingsPopup";

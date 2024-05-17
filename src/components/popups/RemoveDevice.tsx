@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import '../../styles/popups/RemoveDevice.css';
-import '../styles/popups/Common.css';
+import styles from '../../styles/popups/RemoveDevice.module.css';
+import commonStyles from '../../styles/popups/Common.module.css';
 import socket from '../../socketio'
 
 interface IProps {
@@ -25,9 +25,9 @@ export function RemoveDevicePopup({onclose, dev_data}: IProps) {
     }, []);
 
     return <div>
-        <div className='popup darken'>
-            <div className='popup-remove-inner'>
-                <div className="top-right">
+        <div className={`${commonStyles.popup} ${commonStyles.darken}`}>
+            <div className={`${commonStyles['popup-remove-inner']}`}>
+                <div className={`${commonStyles['top-right']}`}>
                     <img src={process.env.PUBLIC_URL + 'Resources/button_popup_close.png'}
                          onClick={onclose} alt={"Alter popup close"}/>
                 </div>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import DeviceSetup from './SetupDevice'
-import '../../styles/popups/EditDevice.css';
-import '../styles/popups/Common.css';
+import '../../styles/popups/EditDevice.module.css';
+import '../../styles/popups/Common.module.css';
 import socket from '../..//socketio';
 import {Button} from "@mui/material";
 

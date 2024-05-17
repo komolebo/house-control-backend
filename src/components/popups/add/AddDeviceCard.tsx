@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/popups/add/AddDeviceCard.css'
+import '../../../styles/popups/add/AddDeviceCard.module.css'
 
 interface IProps {
     onclick: (data: any) => void,

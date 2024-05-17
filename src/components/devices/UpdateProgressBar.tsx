@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {CircularProgressbar} from 'react-circular-progressbar';
-import '../../styles/Devices/UpdateProgressBar.css';
+import '../../styles/Devices/UpdateProgressBar.module.css';
 import socket from '../../socketio';
 
 export interface IProps {

@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import '../../styles/popups/SettingsPopup.css';
+import '../../styles/popups/SettingsPopup.module.css';
 import {PopupProps, useGlobalPopupContext} from "./PopupProvider";
 
 interface IProps {

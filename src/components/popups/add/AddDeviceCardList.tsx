@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {DeviceCard} from './AddDeviceCard'
-import '../../../styles/popups/add/AddDeviceCardList.css'
+import '../../../styles/popups/add/AddDeviceCardList.module.css'
 
 interface IProps {
     select_cb: (id: number) => void,

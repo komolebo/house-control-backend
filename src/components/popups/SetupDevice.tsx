@@ -1,6 +1,6 @@
 import React from 'react';
 import {DeviceCard} from './add/AddDeviceCard'
-import '../../styles/popups/SetupDevice.css';
+import '../../styles/popups/SetupDevice.module.css';
 import {Input, Select} from "@mui/material";
 
 interface IProps {

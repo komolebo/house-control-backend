@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Components/SelectCheckbox.css'
+import '../styles/Components/SelectCheckbox.module.css'
 
 
 export interface IProps {

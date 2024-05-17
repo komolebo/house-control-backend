@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import '../../styles/Devices/DeviceTable.css';
-import '../styles/Devices/DeviceState.css'
+import '../../styles/Devices/DeviceTable.module.css';
+import '../../styles/Devices/DeviceState.module.css'
 import {DeviceAction} from '../popups/SettingsPopup'
 import UpdateProgressBar from './UpdateProgressBar'
 import socket from '../../socketio'
