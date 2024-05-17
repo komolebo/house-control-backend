@@ -46,6 +46,9 @@
     ]
   },
   "devDependencies": {
-    "socket.io-client": "^4.7.5"
+    "css-loader": "^7.1.1",
+    "mini-css-extract-plugin": "^2.9.0",
+    "socket.io-client": "^4.7.5",
+    "style-loader": "^4.0.0"
   }
 }
