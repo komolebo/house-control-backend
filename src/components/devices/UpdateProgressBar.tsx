@@ -24,10 +24,10 @@ function UpdateProgressBar({x, y, oncomplete}: IProps) {
         setPercentage (percent);
     }
 
-    socket.subscribe ("update_dev_in_progress", (data: any) => {
+    socket.on ("update_dev_in_progress", (data: any) => {
         updateCounter (data["value"]);
     });
-    socket.subscribe ("update_dev_complete", {oncomplete});
+    socket.on ("update_dev_complete", (data) => oncomplete()); //TODO: something's wrong here
 
     useEffect (() => {
         clearInterval (interval);

@@ -10,13 +10,13 @@ interface IProps {
 
 export function RemoveDevicePopup({onclose, dev_data}: IProps) {
     const remove = () => {
-        socket.notifyBackend ("dev_rem", {"mac": dev_data.mac});
+        socket.emit ("dev_rem", {"mac": dev_data.mac});
         onclose ();
     }
 
     useEffect (() => {
-        socket.subscribe ("dev_rem_ack", () => {
-            socket.notifyBackend ("dev_read_list", {});
+        socket.on ("dev_rem_ack", () => {
+            socket.emit ("dev_read_list", {});
         });
 
         return () => {

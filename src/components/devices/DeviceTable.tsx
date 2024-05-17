@@ -134,8 +134,8 @@ function StateItem({device_data, onstatechange, disabled}: IDevState) {
     </div>
 }
 
-export function DeviceTable({onpopup}: IProps) {
-    const {showPopup, popupProps} = useGlobalPopupContext ();
+export function DeviceTable() {
+    const {showPopup} = useGlobalPopupContext ();
     const [state, setState] = useState<IState> ({
         dev_info: devices, selectedId: -1, updateInProgress: false, devId: -1, positionSource: {}
     });
@@ -225,7 +225,7 @@ export function DeviceTable({onpopup}: IProps) {
     const state_changed = (i: number) => {
         var obj = state.dev_info.find ((el: any) => el.id === i);
 
-        socket.notifyBackend ("dev_upd", obj);
+        socket.emit ("dev_upd", obj);
 
         setState (state.dev_info.map ((device_data: any) => {
             if (device_data.id === i) {
@@ -236,35 +236,35 @@ export function DeviceTable({onpopup}: IProps) {
     }
 
     useEffect (() => {
-        socket.subscribe ("dev_read_list_resp", (data: any) => {
+        socket.on ("dev_read_list_resp", (data: any) => {
             setState ({...state, dev_info: data});
         });
 
-        socket.subscribe ("dev_read_list_resp", (data: any) => {
+        socket.on ("dev_read_list_resp", (data: any) => {
             setState ({...state, dev_info: data});
         });
 
-        socket.subscribe ("dev_upd_ack", () => {
-            socket.notifyBackend ("dev_read_list", {});
+        socket.on ("dev_upd_ack", () => {
+            socket.emit ("dev_read_list", {});
         });
 
-        socket.subscribe ("dev_add_ack", () => {
-            socket.notifyBackend ("dev_read_list", {});
+        socket.on ("dev_add_ack", () => {
+            socket.emit ("dev_read_list", {});
         });
 
-        socket.subscribe ("dev_disconn", () => {
-            socket.notifyBackend ("dev_read_list", {});
+        socket.on ("dev_disconn", () => {
+            socket.emit ("dev_read_list", {});
         });
 
-        socket.subscribe ("dev_notify_data", () => {
-            socket.notifyBackend ("dev_read_list", {});
+        socket.on ("dev_notify_data", () => {
+            socket.emit ("dev_read_list", {});
         });
 
-        socket.subscribe ("update_dev_ack", (data: any) => {
+        socket.on ("update_dev_ack", (data: any) => {
             confirmUpdate (data["mac"]);
         });
 
-        socket.notifyBackend ("dev_read_list", {});
+        socket.emit ("dev_read_list", {});
     }, [])
 
 

@@ -43,8 +43,8 @@ export function AddDevicePopup() {
         setDeviceConfirmed(true);
     }
     const addDevice = () => {
-        socket.notifyBackend("dev_conn_req", inputInfo);
-        // socket.notifyBackend("dev_add", this.state.input_info);
+        socket.emit("dev_conn_req", inputInfo);
+        // socket.emit("dev_add", this.state.input_info);
         // Send here add device request to BACK [this.state.dev_info]
         popupProps.onAct({}); // TODO ??
         popupProps.onClose();
@@ -63,8 +63,8 @@ export function AddDevicePopup() {
     }
 
     useEffect(() => {
-        socket.notifyBackend("dev_scan_req", {});
-        socket.subscribe("dev_scan_resp", completeScan);
+        socket.emit("dev_scan_req", {});
+        socket.on("dev_scan_resp", completeScan);
     }, []);
 
     let button_disabled = false;

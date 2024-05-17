@@ -14,7 +14,7 @@ export default function EditDevicePopup({dev_data, onclose}: IProps) {
     const [inputInfo, setInputInfo] = useState<any> ();
 
     const clickEdit = () => {
-        socket.notifyBackend ("dev_upd", inputInfo);
+        socket.emit ("dev_upd", inputInfo);
         onclose ();
     }
     const setInfo = (dev_info: any) => {
