@@ -1,46 +1,63 @@
-import {createTheme} from "@mui/material";
+import {createTheme, darkScrollbar} from "@mui/material";
 import {lightTheme} from "./lightThemeStyle";
 import {commonMuiComponentStyles, typographyStyle} from "./bothThemeStyles";
 
 export let darkTheme = createTheme ({});
 
-darkTheme = createTheme(darkTheme, {
-    palette: {
-        background: {
-            default: "#14131B",
-            light: "#191A1E"
-        },
-        action: {
-            disabledBackground: 'rgba(255,255,255,0.1)',
-            disabled: "rgba(255,255,255,0.4)"
-        },
-        info: {
-            main: lightTheme.palette.info.light,
-            // dark: "grey"
-        },
-        primary: {
-            light: "#3f3e8b",
-        },
-        secondary: {
-            main: "#8D8D8D"
-        },
-        text: {
-            primary: "#FFFFFF"
-        },
-        special: {
-            main: "#1B1A43"
-        }
+const darkPalette = {
+    background: {
+        default: "#14131B",
+        light: "#191A1E"
     },
-})
+    action: {
+        disabledBackground: 'rgba(255,255,255,0.1)',
+        disabled: "rgba(255,255,255,0.4)"
+    },
+    info: {
+        main: lightTheme.palette.info.light,
+        dark: "#2b2678"
+    },
+    primary: {
+        light: "#3f3e8b",
+    },
+    secondary: {
+        main: "#8D8D8D"
+    },
+    text: {
+        primary: "#FFFFFF"
+    },
+    special: {
+        main: "#1B1A43"
+    }
+}
 
 darkTheme = createTheme(darkTheme, {
+    palette: darkPalette,
     typography: {
         ...typographyStyle,
-        color: 'red'
     },
 
     components: {
         ...commonMuiComponentStyles,
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+                        backgroundColor: darkPalette.background.default
+                    },
+                    "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+                        borderRadius: 5,
+                        backgroundColor: darkPalette.secondary.main,
+                        // minHeight: 10,
+                        border: "6px solid",
+                        borderColor: darkPalette.background.light
+                    },
+                    "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+                        backgroundColor: darkPalette.info.main,
+                    },
+                },
+            },
+        },
         MuiDivider: {
             styleOverrides: {
                 root: {

@@ -4,7 +4,6 @@ import {Card, Modal} from "@mui/material";
 import buttonStyles from "../../styles/common/buttons.module.css";
 import positionStyles from "../../styles/common/position.module.css";
 import {AddDevicePopup} from "./add/AddDevice";
-import {NotificationPopup} from "./notification/Notifications";
 import EditDevice from "./EditDevice";
 import RemoveDevicePopup from "./RemoveDevice";
 import SettingsPopup from "./SettingsPopup";
@@ -13,7 +12,6 @@ import UpdateDevicePopup from "./UpdateDevice";
 
 export enum POPUP_TYPE {
     AddDevice,
-    Notification,
     EditDevice,
     RemoveDevice,
     Settings,
@@ -40,7 +38,6 @@ type ContextType = {
 // add here new modal dialogues
 const MODAL_COMPONENTS: any = {
     [POPUP_TYPE.AddDevice]: AddDevicePopup,
-    [POPUP_TYPE.Notification]: NotificationPopup,
     [POPUP_TYPE.EditDevice]: EditDevice,
     [POPUP_TYPE.RemoveDevice]: RemoveDevicePopup,
     [POPUP_TYPE.Settings]: SettingsPopup,

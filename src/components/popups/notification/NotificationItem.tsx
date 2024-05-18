@@ -1,4 +1,4 @@
-import {NotificationObject, NotificationSeverity} from "../../../globals/NotificationData";
+import {NotificationSeverity} from "../../../globals/NotificationData";
 import {IconButton, Tooltip, Typography} from "@mui/material";
 import {ReactComponent as LogoSeverity} from "../../../assets/notification-severity.svg";
 import {ReactComponent as LogoCheckMark} from "../../../assets/check-mark.svg";
@@ -6,19 +6,27 @@ import {ReactComponent as LogoEnvelope} from "../../../assets/envelope.svg";
 import {ReactComponent as LogoRemove} from "../../../assets/remove.svg";
 import {darkTheme} from "../../mui/darkThemeStyle";
 
-
+interface IProps {
+    id : number,
+    date: string,
+    isRead: boolean,
+    severity: NotificationSeverity,
+    text: string,
+    onread: (id: number) => void,
+    onremove: (id: number) => void
+}
 interface IStatusProps {
     status: NotificationSeverity
 }
-
 interface IInfoProps {
     text: string,
     date: string
 }
-
 interface IActionProps {
-    read: boolean,
-    recentlyRead: boolean
+    isRead: boolean,
+    recentlyRead: boolean,
+    onread: () => void,
+    onremove: () => void
 }
 
 function NotifyStatus({status}: IStatusProps) {
@@ -49,15 +57,15 @@ function NotifyInfo({date, text}: IInfoProps) {
     </div>
 }
 
-function NotifyAction({read, recentlyRead}: IActionProps) {
-    const color = read && recentlyRead ? darkTheme.palette.info.main : darkTheme.palette.secondary.main;
+function NotifyAction({isRead, recentlyRead, onread, onremove}: IActionProps) {
+    const color = isRead && recentlyRead ? darkTheme.palette.info.main : darkTheme.palette.secondary.main;
     return <div style={{display: "flex", flexDirection: "column", marginLeft: "auto"}}>
-        <IconButton>
+        <IconButton onClick={onremove}>
             <LogoRemove fill={darkTheme.palette.secondary.main}/>
         </IconButton>
 
-        <IconButton>
-            {read ?
+        <IconButton onClick={onread}>
+            {isRead ?
                 <LogoCheckMark stroke={color}/>
                 :
                 <LogoEnvelope stroke={darkTheme.palette.secondary.main}/>
@@ -67,11 +75,20 @@ function NotifyAction({read, recentlyRead}: IActionProps) {
     </div>
 }
 
-export function NotificationItem({date, id, read, severity, text}: NotificationObject) {
-    return <div style={{width: "100%", display: "flex", padding: 5, paddingTop: 10, borderBlock: "solid 0.5px #000000"}}>
+export function NotificationItem({date, id, isRead, severity, text, onremove, onread}: IProps) {
+    const remove = () => {
+        onremove(id);
+    }
+    const read = () => {
+        onread(id);
+    }
+    return <div style={{ width: "100%", display: "flex", padding: "20px 0px",
+        borderBlock: "solid 0.5px #000000",
+         opacity: isRead ? "20%" : "100%"}}
+    >
         <NotifyStatus status={severity}/>
         <NotifyInfo text={text} date={date}/>
-        <NotifyAction read={read} recentlyRead={id == 2 || id == 3}/>
+        <NotifyAction isRead={isRead} recentlyRead={id == 2 || id == 3} onread={read} onremove={remove}/>
     </div>
 }
 

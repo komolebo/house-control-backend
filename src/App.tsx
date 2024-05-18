@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {PopupProvider} from "./components/popups/PopupProvider";
 import AppBanner from "./components/AppBanner";
-import {ThemeProvider} from "@mui/material";
+import {CssBaseline, ThemeProvider} from "@mui/material";
 import {darkTheme} from "./components/mui/darkThemeStyle";
 import {lightTheme} from "./components/mui/lightThemeStyle";
 import {DarkModeContext} from "./globals/providers/DarkModeProvider";
@@ -18,6 +18,7 @@ function App() {
 
     return <ThemeProvider theme={darkMode || defaultDark ? darkTheme : darkTheme}>
         <PopupProvider>
+            <CssBaseline/>
             <AppMainPage/>
         </PopupProvider>
     </ThemeProvider>

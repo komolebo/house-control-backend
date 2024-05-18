@@ -5,5 +5,5 @@ export type NotificationObject = {
     date: string,
     text: string,
     severity: NotificationSeverity,
-    read: boolean
+    isRead: boolean
 }

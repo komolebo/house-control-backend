@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../../styles/popups/notification/Notification.module.css'
 import '../../../styles/popups/Common.module.css'
 import NotificationHeader from './NotificationHeader';
@@ -9,237 +9,75 @@ import {NotificationObject, NotificationSeverity} from "../../../globals/Notific
 interface IProps {
     onclose: () => void
 }
+interface IState {
+    notifications: NotificationObject[]
+}
 
-export function NotificationPopup() {
+export function NotificationPopover() {
     const notifications: NotificationObject[] = [
         {
             id: 0,
             text: "There is new SW available",
             severity: NotificationSeverity.low,
-            read: false,
+            isRead: false,
             date: "Today, 10:00 AM"
         },
         {
             id: 1,
             text: "There is new SW available",
             severity: NotificationSeverity.low,
-            read: true,
+            isRead: true,
             date: "Today, 10:00 AM"
         },
         {
             id: 2,
             text: "There is new SW available",
             severity: NotificationSeverity.high,
-            read: true,
+            isRead: true,
             date: "Today, 10:00 AM"
         },
         {
             id: 3,
             text: "There is new SW available",
             severity: NotificationSeverity.normal,
-            read: false,
+            isRead: false,
             date: "Today, 10:00 AM"
         },
+        {
+            id: 4,
+            text: "There is new SW available",
+            severity: NotificationSeverity.normal,
+            isRead: false,
+            date: "Today, 10:00 AM"
+        }
     ]
+    const [state, setState] = useState<IState>({notifications: notifications});
+
+    const remove = (id: number) => {
+        setState({...state, notifications: state.notifications.filter(
+            item => item.id !== id)})
+    }
+    const read = (id: number) => {
+        setState({...state, notifications: state.notifications.map(
+            item => (item.id === id ? {...item, isRead: !item.isRead} : item))})
+    }
 
     return (
-        <div style={{width: 350}}>
-            <NotificationHeader unreadMessages={notifications.length}/>
+        <div style={{width: 350, padding: "20px 20px 0 20px"}}>
+            <NotificationHeader unreadMessages={state.notifications.length}/>
 
             <Box sx={{display: "flex", flexDirection: "column", width: "100%"}}>
-                {notifications.map(item => (
+                {state.notifications.map (item => (
                     <NotificationItem id={item.id} key={item.id}
                                       date={item.date}
                                       text={item.text}
                                       severity={item.severity}
-                                      read={item.read}
+                                      isRead={item.isRead}
+                                      onread={read}
+                                      onremove={remove}
                     />
                 ))}
             </Box>
-        </div>
-    )
-
-}
-
-export function NotificationPopup2({onclose}: IProps) {
-    return (
-        <div>
-            <div className='popup'>
-                <div className='popup-notify-inner'>
-                    <div className='head'>
-                        <div className='element'>
-                            <img className=""
-                                 src={process.env.PUBLIC_URL + 'Resources/ico_notification_popup_.png'}
-                                 alt={"Alter ico notif tab"}/>
-                        </div>
-                        <div className='popup-text label white'>Notifications</div>
-                        <div className='popup-count label white'>4</div>
-                    </div>
-                    <div className='notification-list'>
-                        <ul>
-                            <li>
-                                <div className='notity-item'>
-                                    <div className='item-ico'>
-                                        <img className=""
-                                             src={process.env.PUBLIC_URL + 'Resources/ico_notification_red.png'}
-                                             alt={"Alter ico notif red"}/>
-                                    </div>
-                                    <div className='item-data'>
-                                        <div className='label item-text'>Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elitdsadkl
-                                        </div>
-                                        <div className='item-time time-style'>Today, 10:00 AM</div>
-                                    </div>
-                                    <div className='item-action'>
-                                        <div className='item-delete'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_notification_delete.png'}
-                                                 alt={"Alter ico notif delete"}/>
-                                        </div>
-                                        <div className='item-status-notification'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_massege_close_blue.png'}
-                                                 alt={"Alter ico message blue"}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div className='notity-item'>
-                                    <div className='item-ico'>
-                                        <img className=""
-                                             src={process.env.PUBLIC_URL + 'Resources/ico_notification_blue.png'}
-                                             alt={"Alter ico notif blue"}/>
-                                    </div>
-                                    <div className='item-data'>
-                                        <div className='label item-text'>Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elitdsadkl
-                                        </div>
-                                        <div className='item-time time-style'>Today, 10:00 AM</div>
-                                    </div>
-                                    <div className='item-action'>
-                                        <div className='item-delete'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_notification_delete.png'}
-                                                 alt={"Alter ico notif delete"}/>
-                                        </div>
-                                        <div className='item-status-notification'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_massege_close.png'}
-                                                 alt={"Alter ico message close"}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div className='notity-item'>
-                                    <div className='item-ico'>
-                                        <img className=""
-                                             src={process.env.PUBLIC_URL + 'Resources/ico_notification_blue.png'}
-                                             alt={"Alter ico notif blue"}/>
-                                    </div>
-                                    <div className='item-data'>
-                                        <div className='label item-text'>Lorem ipsum dolor sit amet,
-                                            consectetur adipiscing elit
-                                        </div>
-                                        <div className='item-time time-style'>Today, 10:00 AM</div>
-                                        <div className='item-action'>
-                                            <button className="button select-col action">Update</button>
-                                        </div>
-                                    </div>
-                                    <div className='item-action'>
-                                        <div className='item-delete'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_notification_delete.png'}
-                                                 alt={"Alter ico notif delete"}/>
-                                        </div>
-                                        <div className='item-status-notification'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_massege_close.png'}
-                                                 alt={"Alter ico message close"}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className='notity-item'>
-                                    <div className='item-ico diaphanous'>
-                                        <img className=""
-                                             src={process.env.PUBLIC_URL + 'Resources/ico_notification_blue.png'}/>
-                                    </div>
-                                    <div className='item-data diaphanous'>
-                                        <div className='label item-text'>Lorem ipsum1 dolor sit amet,
-                                            consectetur adipiscing elitdsadkl
-                                        </div>
-                                        <div className='item-time time-style'>Today, 10:00 AM</div>
-                                    </div>
-                                    <div className='item-action'>
-                                        <div className='item-delete'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_notification_delete.png'}
-                                                 alt={"Alter notif delete"}/>
-                                        </div>
-                                        <div className='item-status-notification'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_massege_open.png'}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className='notity-item'>
-                                    <div className='item-ico diaphanous'>
-                                        <img className=""
-                                             src={process.env.PUBLIC_URL + 'Resources/ico_notification_blue.png'}/>
-                                    </div>
-                                    <div className='item-data diaphanous'>
-                                        <div className='label item-text'>Lorem ipsum1 dolor sit amet,
-                                            consectetur adipiscing elitdsadkl
-                                        </div>
-                                        <div className='item-time time-style'>Today, 10:00 AM</div>
-                                    </div>
-                                    <div className='item-action'>
-                                        <div className='item-delete'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_notification_delete.png'}/>
-                                        </div>
-                                        <div className='item-status-notification'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_massege_open.png'}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className='notity-item'>
-                                    <div className='item-ico diaphanous'>
-                                        <img className=""
-                                             src={process.env.PUBLIC_URL + 'Resources/ico_notification_blue.png'}/>
-                                    </div>
-                                    <div className='item-data diaphanous'>
-                                        <div className='label item-text'>Lorem ipsum1 dolor sit amet,
-                                            consectetur adipiscing elitdsadkl
-                                        </div>
-                                        <div className='item-time time-style'>Today, 10:00 AM</div>
-                                    </div>
-                                    <div className='item-action'>
-                                        <div className='item-delete'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_notification_delete.png'}/>
-                                        </div>
-                                        <div className='item-status-notification'>
-                                            <img className=""
-                                                 src={process.env.PUBLIC_URL + 'Resources/ico_massege_open.png'}/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     )
 }

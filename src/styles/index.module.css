@@ -1,29 +1,28 @@
 body {
   margin: 0;
-  background-color: #191A1E;
 }
 
-::-webkit-scrollbar {
-  width: 5px;
-}
+/*::-webkit-scrollbar {*/
+/*  width: 5px;*/
+/*}*/
 
 /* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgb(51, 38, 38); 
-  border-radius: 10px;
-  /* border: solid wheat 1px ; */
-}
+/*::-webkit-scrollbar-track {*/
+/*  box-shadow: inset 0 0 5px rgb(51, 38, 38); */
+/*  border-radius: 10px;*/
+/*  !* border: solid wheat 1px ; *!*/
+/*}*/
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(6, 1, 27); 
-  border-radius: 10px;
-  border: solid 0.5px rgb(5, 34, 129);
-  /* border: solid 2px wheat; */
-}
+/*!* Handle *!*/
+/*::-webkit-scrollbar-thumb {*/
+/*  background: rgb(6, 1, 27); */
+/*  border-radius: 10px;*/
+/*  border: solid 0.5px rgb(5, 34, 129);*/
+/*  !* border: solid 2px wheat; *!*/
+/*}*/
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(10, 10, 121); 
-  border: solid 1px rgb(5, 34, 129);
-}
+/*!* Handle on hover *!*/
+/*::-webkit-scrollbar-thumb:hover {*/
+/*  background: rgb(10, 10, 121); */
+/*  border: solid 1px rgb(5, 34, 129);*/
+/*}*/
