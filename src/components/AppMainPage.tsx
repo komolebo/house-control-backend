@@ -1,10 +1,10 @@
 import AppSidebar from "./AppSidebar";
 import AppMainbar from "./AppMainbar";
-import { Box } from "@mui/material";
+import {Box} from "@mui/material";
+import React from "react";
 
-export function AppMainPage(){
+export function AppMainPage() {
     return <Box bgcolor={"background.default"} display={"flex"}>
-        {/*<MainPage/>*/}
         <AppSidebar/>
         <AppMainbar/>
     </Box>

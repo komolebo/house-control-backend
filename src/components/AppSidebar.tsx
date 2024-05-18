@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import AppBanner from "./AppBanner";
 import AppMenu from "./AppMenu";
+import React from "react";
 
 export function AppSidebar() {
     return <Box sx={{display: "flex", flexDirection: "column", maxWidth: 300, height: "100vh", bgcolor: "background.default"}}>
