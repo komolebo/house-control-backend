@@ -1,26 +1,61 @@
 import React from 'react';
 import '../../../styles/popups/notification/Notification.module.css'
 import '../../../styles/popups/Common.module.css'
-import { PopupProps } from '../PopupProvider';
 import NotificationHeader from './NotificationHeader';
+import NotificationItem from "./NotificationItem";
+import {Box} from "@mui/material";
+import {NotificationObject, NotificationSeverity} from "../../../globals/NotificationData";
 
 interface IProps {
     onclose: () => void
 }
 
-enum NotificationSeverity { high, normal, low };
-type NotificationItem = {
-    date: string,
-    text: string,
-    severity: NotificationSeverity,
+export function NotificationPopup() {
+    const notifications: NotificationObject[] = [
+        {
+            id: 0,
+            text: "There is new SW available",
+            severity: NotificationSeverity.low,
+            read: false,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 1,
+            text: "There is new SW available",
+            severity: NotificationSeverity.low,
+            read: true,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 2,
+            text: "There is new SW available",
+            severity: NotificationSeverity.high,
+            read: true,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 3,
+            text: "There is new SW available",
+            severity: NotificationSeverity.normal,
+            read: false,
+            date: "Today, 10:00 AM"
+        },
+    ]
 
-}
-
-
-export function NotificationPopup({}: PopupProps) {
     return (
-        <div style={{width: 400}}>
-            <NotificationHeader unreadMessages={5}/>
+        <div style={{width: 350}}>
+            <NotificationHeader unreadMessages={notifications.length}/>
+
+            <Box sx={{display: "flex", flexDirection: "column", width: "100%"}}>
+                {notifications.map(item => (
+                    <NotificationItem id={item.id} key={item.id}
+                                      date={item.date}
+                                      text={item.text}
+                                      severity={item.severity}
+                                      read={item.read}
+                    />
+                ))}
+            </Box>
         </div>
     )
 

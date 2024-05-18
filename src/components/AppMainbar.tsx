@@ -11,7 +11,7 @@ export function AppMainbar() {
         <AppNavbar/>
         
         <Typography variant="h1" color={"text.primary"}>
-            Devices
+            Sensors
         </Typography>
 
         <div style={{float: "right"}}>

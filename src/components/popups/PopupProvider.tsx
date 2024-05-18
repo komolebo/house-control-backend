@@ -4,7 +4,7 @@ import {Card, Modal} from "@mui/material";
 import buttonStyles from "../../styles/common/buttons.module.css";
 import positionStyles from "../../styles/common/position.module.css";
 import {AddDevicePopup} from "./add/AddDevice";
-import {NotificationPopup} from "./notification/Notification";
+import {NotificationPopup} from "./notification/Notifications";
 import EditDevice from "./EditDevice";
 import RemoveDevicePopup from "./RemoveDevice";
 import SettingsPopup from "./SettingsPopup";
