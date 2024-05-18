@@ -6,7 +6,9 @@ import {darkTheme} from "./components/mui/darkThemeStyle";
 import {lightTheme} from "./components/mui/lightThemeStyle";
 import {DarkModeContext} from "./globals/providers/DarkModeProvider";
 import AppMenu from "./components/AppMenu";
-
+import AppSidebar from './components/AppSidebar';
+import AppMainbar from './components/AppMainbar';
+import AppMainPage from './components/AppMainPage';
 
 function App() {
     const {globalDark} = useContext (DarkModeContext);
@@ -16,9 +18,7 @@ function App() {
 
     return <ThemeProvider theme={darkMode || defaultDark ? darkTheme : darkTheme}>
         <PopupProvider>
-            {/*<MainPage/>*/}
-            <AppBanner/>
-            <AppMenu/>
+            <AppMainPage/>
         </PopupProvider>
     </ThemeProvider>
 }

@@ -1,44 +1,62 @@
 import {Divider, ListItemIcon, ListItemText, MenuItem, MenuList, Paper, Typography} from "@mui/material";
 import {ReactComponent as LogoRooms} from "../assets/main-menu-rooms.svg";
-import {FC, useState} from "react";
+import {ReactComponent as LogoDevices} from "../assets/main-menu-devices.svg";
+import {ReactComponent as LogoSettings} from "../assets/main-menu-settings.svg";
+import {ReactComponent as LogoHome} from "../assets/main-menu-home.svg";
+import {ReactComponent as LogoRoutines} from "../assets/main-menu-routines.svg";
+import {ReactComponent as LogoStatistics} from "../assets/main-menu-statistics.svg";
+import React, {FC, useState} from "react";
+import { darkTheme } from "./mui/darkThemeStyle";
 
-interface IMenuElement {
-    component: FC,
+type IMenuElement = {
+    component: FC<React.SVGProps<SVGSVGElement>>,
     text: string
 }
 
 export function AppMenu() {
     const [selectedIdx, setSelectedIdx] = useState<number>(0);
+
     const menu_items: IMenuElement[] = [
         {
-            component: LogoRooms, text: "Home"
+            component: LogoHome, text: "Home"
         },
         {
             component: LogoRooms, text: "Rooms"
         },
         {
-            component: LogoRooms, text: "Devices"
+            component: LogoDevices, text: "Devices"
         },
         {
-            component: LogoRooms, text: "Statistics"
+            component: LogoStatistics, text: "Statistics"
         },
         {
-            component: LogoRooms, text: "Settings"
+            component: LogoRoutines, text: "Routines"
+        },
+        {
+            component: LogoSettings, text: "Settings"
         },
     ]
 
-    return (
-        <Paper sx={{ width: 320, maxWidth: '100%' }}>
-            <MenuList>
-            { menu_items.map((menu_item, index: number) => (
-                <MenuItem sx={{bl: "solid 1 blue"}}>
-                    <ListItemIcon sx={{p: 2}} >
-                        <LogoRooms fill={index == selectedIdx ? "blue" : "white"}/>
-                    </ListItemIcon>
+    const activeColor = darkTheme.palette.info.main;
 
-                    <ListItemText sx={{pl: 2, color: ""}} color=>
-                        ELEMENT ${index}
+    return (
+        <Paper sx={{ maxWidth: '100%', p: 0, m: 0 }}>
+            <MenuList>
+            { menu_items.map((item: IMenuElement, index: number) => (
+                <MenuItem
+                    key={index}
+                    sx={{borderLeft: index == selectedIdx ? "3px solid " + activeColor : ""}} 
+                    onClick={() => setSelectedIdx(index)}
+                    >
+
+                    <ListItemIcon sx={{p: 2}}>
+                        <item.component fill={selectedIdx == index ? activeColor : "white"}/>
+                    </ListItemIcon>
+                    
+                    <ListItemText sx={{pl: 1, color: selectedIdx == index ? activeColor : "white"}}>
+                        {item.text}
                     </ListItemText>
+
                 </MenuItem>
                 ))
             }

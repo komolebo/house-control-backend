@@ -1,12 +1,32 @@
 import React from 'react';
 import '../../../styles/popups/notification/Notification.module.css'
 import '../../../styles/popups/Common.module.css'
+import { PopupProps } from '../PopupProvider';
+import NotificationHeader from './NotificationHeader';
 
 interface IProps {
     onclose: () => void
 }
 
-export function NotificationPopup({onclose}: IProps) {
+enum NotificationSeverity { high, normal, low };
+type NotificationItem = {
+    date: string,
+    text: string,
+    severity: NotificationSeverity,
+
+}
+
+
+export function NotificationPopup({}: PopupProps) {
+    return (
+        <div style={{width: 400}}>
+            <NotificationHeader unreadMessages={5}/>
+        </div>
+    )
+
+}
+
+export function NotificationPopup2({onclose}: IProps) {
     return (
         <div>
             <div className='popup'>

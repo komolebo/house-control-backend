@@ -7,14 +7,15 @@ export let darkTheme = createTheme ({});
 darkTheme = createTheme(darkTheme, {
     palette: {
         background: {
-            default: "#141432"
+            default: "#14131B",
+            light: "#191A1E"
         },
         action: {
             disabledBackground: 'rgba(255,255,255,0.1)',
             disabled: "rgba(255,255,255,0.4)"
         },
         info: {
-            // main: lightTheme.palette.info.light,
+            main: lightTheme.palette.info.light,
             // dark: "grey"
         },
         primary: {
@@ -63,7 +64,7 @@ darkTheme = createTheme(darkTheme, {
                     },
 
                     color: "#a5a5a5",
-                    backgroundColor: '#1B1A43', //"#141432",
+                    backgroundColor: darkTheme.palette.background, //"#141432",
                     borderBottom: "solid 1px rgba(0, 0, 0, 0.1)",
                     padding:  "8px 15px",
                     margin: 0
@@ -147,7 +148,7 @@ darkTheme = createTheme(darkTheme, {
         MuiPaper: {
             styleOverrides: {
                 root: {
-                    // backgroundColor: "rgba(120, 120, 120, 0.2)"
+                    backgroundColor: "#14131B"
                 }
             }
         },
