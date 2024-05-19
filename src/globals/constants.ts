@@ -14,6 +14,7 @@ export namespace Menu{
 
 export namespace Sensor {
     export enum RegistrationSteps {
+        Invalid = -1,
         Scanning,
         Confirm,
         Save,

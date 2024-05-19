@@ -1,4 +1,4 @@
-import {SensorCard} from "../elements/SensorCard";
+import {SensorCard, SensorCardState} from "../elements/SensorCard";
 import {Sensor} from "../../../../globals/constants";
 import Types = Sensor.Types;
 import {Box, Button} from "@mui/material";
@@ -7,6 +7,7 @@ import React, {useState} from "react";
 interface IProps {
     onclose: () => void,
     onconfirm: (idx: number) => void,
+    onerror: (msg: string) => void,
     sensorsData: Sensor.SensorRecord[]
 }
 interface ISensorCardsProps {
@@ -56,7 +57,7 @@ function SensorCards({sensorData, onselect, selectedItemID}: ISensorCardsProps) 
     >
         {sensorData.map((el: Sensor.SensorRecord) => (
             <SensorCard
-                active={selectedItemID === el.id}
+                cardState={selectedItemID === el.id ? SensorCardState.selected : SensorCardState.unselected}
                 sensorType={el.sensorType}
                 key={el.id}
                 onclick={() => onselect(el.id)}
@@ -65,7 +66,7 @@ function SensorCards({sensorData, onselect, selectedItemID}: ISensorCardsProps) 
     </Box>
 }
 
-export function SensorConfirm({onclose, onconfirm, sensorsData}: IProps) {
+export function SensorConfirm({onclose, onconfirm, sensorsData, onerror}: IProps) {
     const [selectedId, setSelectedId] = useState<number>(-1);
 
     return <div style={{display: "flex", flexDirection: "column"}}>

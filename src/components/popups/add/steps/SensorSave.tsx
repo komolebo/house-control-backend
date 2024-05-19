@@ -1,4 +1,4 @@
-import {SensorCard} from "../elements/SensorCard";
+import {SensorCard, SensorCardState} from "../elements/SensorCard";
 import {Sensor} from "../../../../globals/constants";
 import React from "react";
 import {AddSensorActionButtons} from "./SensorConfirm";
@@ -8,17 +8,18 @@ import {FormControl, InputLabel, MenuItem, Select, TextField, Typography} from "
 interface IProps {
     onback: () => void,
     onsave: (data: any) => void,
+    onerror: (msg: string) => void,
     sensorRec: Sensor.SensorRecord
 }
 interface ISensorDetailsProps {
     sensorRec: Sensor.SensorRecord
 }
 
-function SensorDefails({sensorRec}: ISensorDetailsProps) {
+function SensorDetails({sensorRec}: ISensorDetailsProps) {
     const locations = ["Kitchen", "Hall", "None"];
 
     return <div style={{display: "flex", paddingTop: 25, width: "100%"}}>
-        <SensorCard active={false} sensorType={sensorRec.sensorType}/>
+        <SensorCard cardState={SensorCardState.default} sensorType={sensorRec.sensorType}/>
 
         <div style={{display: "flex", flexDirection: "column", paddingLeft: 25}}>
             <Typography variant="h2" color="secondary">ID</Typography>
@@ -38,7 +39,9 @@ function SensorDefails({sensorRec}: ISensorDetailsProps) {
                             <em>None</em>
                         </MenuItem>
                         {locations.map((el, index: number) => (
-                            <MenuItem value={index}>{el}</MenuItem>
+                            <MenuItem 
+                                value={index} key={index}
+                            >{el}</MenuItem>
                         ))}
 
                     </Select>
@@ -52,16 +55,16 @@ function SensorDefails({sensorRec}: ISensorDetailsProps) {
     </div>
 }
 
-export function SensorSave({onback, onsave, sensorRec}: IProps) {
+export function SensorSave({onback, onsave, sensorRec, onerror}: IProps) {
     return <div>
         <div style={{paddingBottom: 15}}>
-            <SensorDefails sensorRec={sensorRec}/>
+            <SensorDetails sensorRec={sensorRec}/>
         </div>
 
         <AddSensorActionButtons
             disabled={false}
             onclose={onback}
-            onconfirm={() => onsave({})}
+            onconfirm={() => onsave(sensorRec)}
             actionText="Add sensor"
         />
     </div>

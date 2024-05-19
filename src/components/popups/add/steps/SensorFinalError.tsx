@@ -1,15 +1,24 @@
 import {Typography} from "@mui/material";
 import {SensorCard} from "../elements/SensorCard";
 import {Sensor} from "../../../../globals/constants";
+import {ReactComponent as LogoWarning} from "../../../../assets/warning.svg"
+import { darkTheme } from "../../../mui/darkThemeStyle";
 
 interface IProps {
     sensorRec?: Sensor.SensorRecord
 }
 
 export function SensorFinalError({sensorRec}: IProps) {
-    return <div style={{display: "flex", flexDirection: "column"}}>
-        {/*<SensorCard active={false} sensorType={sensorRec.sensorType}/>*/}
+    return <div style={{
+        display: "flex", 
+        flexDirection: "column", 
+        width: "100%", 
+        alignItems: "center"}}
+    >
+        <div style={{padding: "20px 0 0 0"}}>
+            <LogoWarning fill={darkTheme.palette.error.main}/>
+        </div>
 
-        <Typography variant="h2">Sensor successfully added</Typography>
+        <Typography variant="h3" color="error">Sensor couldn't be added</Typography>
     </div>
 }

@@ -12,20 +12,38 @@ import {darkTheme} from "../../../mui/darkThemeStyle";
 import {Sensor} from "../../../../globals/constants";
 import Types = Sensor.Types;
 
+export enum SensorCardState {
+    default,
+    unselected,
+    selected,
+    added
+}
 interface IProps {
-    active: boolean,
+    cardState: SensorCardState,
     sensorType: Sensor.Types,
     onclick?: () => void
 }
-
 interface ILogoProps {
     sensorType: Sensor.Types,
-    active: boolean,
+    cardState: SensorCardState,
     styles?: any
 }
 
-function SensorLogo({sensorType, active, styles}: ILogoProps) {
-    const color = active ? darkTheme.palette.info.main : darkTheme.palette.secondary.main;
+function colorByCardState(cardState: SensorCardState) {
+    switch (cardState) {
+        case SensorCardState.added:
+            return darkTheme.palette.success.main
+        case SensorCardState.selected:
+            return darkTheme.palette.info.main
+        case SensorCardState.default:
+        case SensorCardState.unselected:
+        default:
+            return darkTheme.palette.secondary.main;
+    }
+}
+
+function SensorLogo({sensorType, cardState, styles}: ILogoProps) {
+    const color = colorByCardState(cardState);
 
     switch (sensorType) {
         case Types.Doors:
@@ -45,22 +63,26 @@ function SensorLogo({sensorType, active, styles}: ILogoProps) {
     }
 }
 
-export function SensorCard({active, sensorType, onclick }: IProps) {
-    const color = active ? darkTheme.palette.info.main : darkTheme.palette.secondary.main;
+export function SensorCard({cardState, sensorType, onclick }: IProps) {
     const interactive: boolean = onclick != undefined;
+
+    const color = colorByCardState(cardState);
+    const hoverColor = color //active ? color : darkTheme.palette.secondary.main;
+    const borderColor = (cardState === SensorCardState.selected || cardState === SensorCardState.added) ? 
+        color : darkTheme.palette.background.default;
 
     return <Card
         sx={{
             padding: 4,
             bgcolor: "background.light",
-            border: "1px solid " + (active ? color : darkTheme.palette.background.default),
+            border: "1px solid " + borderColor,
             // width: "fit-content",
             minWidth: 200,
             display: "flex", flexDirection: "column",
 
             ':hover':
                 interactive ? {
-                    border: "1px solid " + (active ? color : darkTheme.palette.secondary.main),
+                    border: "1px solid " + hoverColor,
                     cursor: "pointer"
                 } : {}
         }}
@@ -68,11 +90,15 @@ export function SensorCard({active, sensorType, onclick }: IProps) {
     >
         <div>
             {interactive ?
-                ( active ? (
-                        <LogoCheck fill={color} style={{width: 20, height: 20, float: "right"}} />
+                ( cardState === SensorCardState.selected ? (
+                    <LogoCheck fill={color} style={{width: 20, height: 20, float: "right"}} />
+                ) : ( 
+                    cardState === SensorCardState.unselected ? (
+                        <LogoCircle fill={color} style={{width: 20, height: 20, float: "right"}}/>
                     ) : (
-                        <LogoCircle fill={color} style={{width: 20, height: 20, float: "right"}} />
-                ))
+                        <></>
+                    )
+                )) 
                 : <></>
             }
 
@@ -81,7 +107,7 @@ export function SensorCard({active, sensorType, onclick }: IProps) {
         <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             <div style={{padding: "20px 40px 20px 40px"}}>
                 {/*<LogoSmoke fill={color}/>*/}
-                <SensorLogo sensorType={sensorType} active={active} styles={{display: "flex", justifyContent: "center"}}/>
+                <SensorLogo sensorType={sensorType} cardState={cardState} styles={{display: "flex", justifyContent: "center"}}/>
             </div>
             <Typography variant="h5" color={color}>
                 {Sensor.Names[sensorType]}

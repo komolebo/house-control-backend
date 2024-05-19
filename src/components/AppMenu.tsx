@@ -17,6 +17,7 @@ type IMenuElement = {
 
 export function AppMenu() {
     const [selectedId, setSelectedId] = useState<number> (Menu.DefaultItem);
+    const [hoverId, setHoverId] = useState<number>(-1);
 
     const menu_items: IMenuElement[] = [
         {
@@ -40,22 +41,32 @@ export function AppMenu() {
     ]
 
     const activeColor = darkTheme.palette.info.main;
+    const borderColor = (id: number) => {
+        if (selectedId === id && hoverId === id)
+            return "white";
+        else if (selectedId == id)
+            return activeColor;
+        else return darkTheme.palette.background.default;
+    }
 
     return (
         <Paper sx={{maxWidth: '100%', p: 0, m: 0}}>
             <MenuList>
                 {menu_items.map ((item: IMenuElement) => (
                     <MenuItem
+                        selected={selectedId === item.id}
                         key={item.id}
-                        sx={{borderLeft: item.id == selectedId ? "3px solid " + activeColor : ""}}
+                        sx={{borderLeft: "3px solid " + borderColor(item.id)}}
                         onClick={() => setSelectedId (item.id)}
+                        onMouseEnter={(e) => setHoverId(item.id)}
+                        onMouseLeave={(e) => setHoverId(-1)}
                     >
 
                         <ListItemIcon sx={{p: 2}}>
-                            <item.component fill={selectedId == item.id ? activeColor : "white"}/>
+                            <item.component fill={(selectedId === item.id && hoverId !== item.id) ? activeColor : "white"}/>
                         </ListItemIcon>
 
-                        <ListItemText sx={{pl: 1, color: selectedId == item.id ? activeColor : "white"}}>
+                        <ListItemText sx={{ pl: 1 }}>
                             {item.text}
                         </ListItemText>
 

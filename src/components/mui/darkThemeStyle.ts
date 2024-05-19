@@ -1,7 +1,6 @@
 import {createTheme, darkScrollbar} from "@mui/material";
 import {lightTheme} from "./lightThemeStyle";
 import {commonMuiComponentStyles, typographyStyle} from "./bothThemeStyles";
-import {dark} from "@mui/material/styles/createPalette";
 
 export let darkTheme = createTheme ({});
 
@@ -30,6 +29,9 @@ const darkPalette = {
     },
     special: {
         main: "#1B1A43"
+    },
+    success: {
+        main: "green"
     }
 }
 
@@ -77,16 +79,16 @@ darkTheme = createTheme(darkTheme, {
         MuiMenuItem: {
             styleOverrides: {
                 root: {
-                    "&:hover, &.Mui-selected, &.Mui-selected:hover": {
-                        backgroundColor: "#1690E9",
+                    "&:hover, &.Mui-selected:hover": {
+                        backgroundColor: darkPalette.background.light,
                         color: "white"
                     },
+                    '&.Mui-selected': {
+                        color: darkPalette.info.main, // Change to your desired selected text color
+                        backgroundColor: darkPalette.background.default,
+                    },
 
-                    color: "#a5a5a5",
-                    backgroundColor: darkTheme.palette.background, //"#141432",
-                    borderBottom: "solid 1px rgba(0, 0, 0, 0.1)",
-                    padding:  "8px 15px",
-                    margin: 0
+                    backgroundColor: darkTheme.palette.background,
                 }
             }
         },
@@ -135,18 +137,12 @@ darkTheme = createTheme(darkTheme, {
                     height: 42,
                     padding: "20px 20px",
                     borderRadius: "8px", // Set desired corner radius for rounded buttons
-
                 },
-                variants: [
-                    {
-                        props: { variant: "contained" },
-                        style: {
-                            "&:hover": {
-                                backgroundColor: darkPalette.primary.light
-                            },
-                        },
-                    },
-                ],
+                contained: {
+                    '&:hover': { // Styles for hover state
+                        backgroundColor: darkPalette.success.main
+                      },
+                },
             },
             variants: [
                 {
