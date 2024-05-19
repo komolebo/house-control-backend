@@ -1,5 +1,5 @@
-<svg width="42" height="42" viewBox="-1 0 43 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="21" cy="21" r="21" fill="current"/>
-<path d="M13.0088 20.9511L29.0012 21.0416" stroke="current" stroke-width="2"/>
-<path d="M21.0049 13V28.9927" stroke="current" stroke-width="2"/>
+<svg width="46" height="46" viewBox="0 0 46 46" fill="mone">
+<circle cx="23" cy="23" r="21" fill="current"/>
+<path d="M23.0049 15V30.9927" stroke="white" stroke-width="2"/>
+<path d="M15 23H30.9927" stroke="white" stroke-width="2"/>
 </svg>

@@ -49,6 +49,62 @@ export function NotificationPopover() {
             severity: NotificationSeverity.normal,
             isRead: false,
             date: "Today, 10:00 AM"
+        },
+        {
+            id: 5,
+            text: "There is new SW available",
+            severity: NotificationSeverity.low,
+            isRead: true,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 6,
+            text: "There is new SW available",
+            severity: NotificationSeverity.high,
+            isRead: true,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 7,
+            text: "There is new SW available",
+            severity: NotificationSeverity.normal,
+            isRead: false,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 8,
+            text: "There is new SW available",
+            severity: NotificationSeverity.normal,
+            isRead: false,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 9,
+            text: "There is new SW available",
+            severity: NotificationSeverity.low,
+            isRead: true,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 10,
+            text: "There is new SW available",
+            severity: NotificationSeverity.high,
+            isRead: true,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 11,
+            text: "There is new SW available",
+            severity: NotificationSeverity.normal,
+            isRead: false,
+            date: "Today, 10:00 AM"
+        },
+        {
+            id: 12,
+            text: "There is new SW available",
+            severity: NotificationSeverity.normal,
+            isRead: false,
+            date: "Today, 10:00 AM"
         }
     ]
     const [state, setState] = useState<IState>({notifications: notifications});

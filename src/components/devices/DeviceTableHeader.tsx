@@ -8,7 +8,7 @@ function DeviceTableHeader() {
     return <div id="device-table-header">
         <div id="add-device-btn">
             <img src={process.env.PUBLIC_URL + 'Resources/button_add_device.png'}
-                 onClick={() => showPopup(POPUP_TYPE.AddDevice, {
+                 onClick={() => showPopup(POPUP_TYPE.AddSensor, {
                      onClose: () => {},
                      onAct: () => {},
                      data: {}

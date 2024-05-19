@@ -23,7 +23,7 @@ export const commonMuiComponentStyles = {
                     border: "2px solid white"
                 },
             }
-        }
+        },
     }
 }
 export const typographyStyle = {
@@ -36,7 +36,7 @@ export const typographyStyle = {
     fontFamily: "Roboto Regular, 'Roboto', sans-serif",
     h1: {
         fontSize: 32,
-        fontWeight: 600,
+        fontWeight: 300,
         // color: "red"
     },
     h2: {

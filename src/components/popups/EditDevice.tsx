@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import DeviceSetup from './SetupDevice'
 import '../../styles/popups/EditDevice.module.css';
 import '../../styles/popups/Common.module.css';
 import socket from '../..//socketio';
@@ -36,12 +35,6 @@ export default function EditDevicePopup({dev_data, onclose}: IProps) {
                              onClick={onclose}/>
                     </div>
                 </div>
-
-                <DeviceSetup
-                    dev_data={dev_data}
-                    onsetinfo={info => setInfo(info)}
-                    locations={[ '-- No room --', 'Kitchen', 'Hall' ]}
-                />
 
                 <div className="popup-buttons-container center-pos">
                     <Button className="button cancel" onClick={onclose}>Cancel</Button>

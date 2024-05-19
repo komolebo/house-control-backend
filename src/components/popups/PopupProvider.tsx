@@ -1,17 +1,17 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
 
-import {Card, Modal} from "@mui/material";
-import buttonStyles from "../../styles/common/buttons.module.css";
+import {Card, IconButton, Modal} from "@mui/material";
 import positionStyles from "../../styles/common/position.module.css";
-import {AddDevicePopup} from "./add/AddDevice";
 import EditDevice from "./EditDevice";
 import RemoveDevicePopup from "./RemoveDevice";
 import SettingsPopup from "./SettingsPopup";
-import DeviceSetup from "./SetupDevice";
 import UpdateDevicePopup from "./UpdateDevice";
+import AddSensorPopup from "./add/AddSensorPopup";
+import {ReactComponent as LogoClose} from "../../assets/close.svg";
+import {darkTheme} from "../mui/darkThemeStyle";
 
 export enum POPUP_TYPE {
-    AddDevice,
+    AddSensor,
     EditDevice,
     RemoveDevice,
     Settings,
@@ -37,11 +37,10 @@ type ContextType = {
 
 // add here new modal dialogues
 const MODAL_COMPONENTS: any = {
-    [POPUP_TYPE.AddDevice]: AddDevicePopup,
+    [POPUP_TYPE.AddSensor]: AddSensorPopup,
     [POPUP_TYPE.EditDevice]: EditDevice,
     [POPUP_TYPE.RemoveDevice]: RemoveDevicePopup,
     [POPUP_TYPE.Settings]: SettingsPopup,
-    [POPUP_TYPE.SetupDevice]: DeviceSetup,
     [POPUP_TYPE.UpdateDevice]: UpdateDevicePopup,
     [POPUP_TYPE.DefaultModal]: null
 }
@@ -51,46 +50,52 @@ interface IPropGlobalModal {
 }
 
 const DEFAULT_POPUP_PROPS: PopupProps = {
-    onClose: () => {},
-    onAct: (data: any) => {},
+    onClose: () => {
+    },
+    onAct: (data: any) => {
+    },
     data: {}
 }
 
-const GlobalModalContext = createContext<ContextType>({
-    hidePopup: () => {},
-    showPopup: () => {},
+const GlobalModalContext = createContext<ContextType> ({
+    hidePopup: () => {
+    },
+    showPopup: () => {
+    },
     popupProps: DEFAULT_POPUP_PROPS
 })
-export const useGlobalPopupContext = () => useContext(GlobalModalContext);
+export const useGlobalPopupContext = () => useContext (GlobalModalContext);
 
 
-export function PopupProvider({children}: IPropGlobalModal){
-    const [modaltype, setType] = useState(POPUP_TYPE.DefaultModal);
-    const [popupProps, setModalProps] = useState<PopupProps>({
-        onAct: () => {},
-        onClose: () => {},
+export function PopupProvider({children}: IPropGlobalModal) {
+    const [modaltype, setType] = useState (POPUP_TYPE.DefaultModal);
+    const [popupProps, setModalProps] = useState<PopupProps> ({
+        onAct: () => {
+        },
+        onClose: () => {
+        },
         data: {}
     });
 
-    useEffect(() => {
+    useEffect (() => {
         function handleEscapeKey(event: KeyboardEvent) {
             if (event.code === 'Escape') {
-                hidePopup()
+                hidePopup ()
             }
         }
 
-        document.addEventListener('keyup', handleEscapeKey)
-        return () => document.removeEventListener('keyup', handleEscapeKey)
+        document.addEventListener ('keyup', handleEscapeKey)
+        return () => document.removeEventListener ('keyup', handleEscapeKey)
     }, [])
 
     const showPopup = (modalType: POPUP_TYPE, popupProps: PopupProps) => {
-        setType(modalType);
-        setModalProps(popupProps);
+        setType (modalType);
+        setModalProps (popupProps);
     }
 
     const hidePopup = () => {
-        setType(POPUP_TYPE.DefaultModal);
-        setModalProps(DEFAULT_POPUP_PROPS);
+        setType (POPUP_TYPE.DefaultModal);
+        setModalProps (DEFAULT_POPUP_PROPS);
     }
 
     const renderComponent = () => {
@@ -113,18 +118,18 @@ export function PopupProvider({children}: IPropGlobalModal){
                     sx={{
                         p: 3, position: "absolute", left: "50%", top: "50%",
                         transform: "translate(-50%, -50%)",
+                        bgcolor: "background.default"
                     }}
                     className="blur"
                 >
                     <div className={positionStyles.floatr} style={{width: 20, height: 20}}
-                         onClick={() => hidePopup()}
+                         onClick={() => hidePopup ()}
                     >
-                        <img alt={"Logo close"}
-                             src={process.env.PUBLIC_URL + "Resources/ico_massege_close.png"}
-                             className={buttonStyles['img-hover']}
-                         />
+                        <IconButton>
+                            <LogoClose fill={darkTheme.palette.secondary.main}/>
+                        </IconButton>
                     </div>
-                    {renderComponent()}
+                    {renderComponent ()}
                 </Card>
             </Modal>
             }
