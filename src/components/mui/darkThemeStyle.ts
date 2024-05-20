@@ -309,10 +309,14 @@ darkTheme = createTheme(darkTheme, {
                 switchBase: {
                     color: darkPalette.secondary.main
                 },
+                root: {
+                    color: "green"
+                },
                 track: {
                     // Controls default (unchecked) color for the track
                     opacity: 0.2,
                     backgroundColor: darkPalette.secondary.main,
+                    color: "green",
                     "$checked$checked + &": {
                         // Controls checked color for the track
                         opacity: 0.7,

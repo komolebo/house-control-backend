@@ -9,6 +9,12 @@ export namespace Menu{
         Settings,
     }
 
+    export enum SensorEdition {
+        Edit,
+        Update,
+        Remove
+    }
+
     export const DefaultItem: number = Items.Devices; // Select Device menu
 }
 
@@ -39,7 +45,8 @@ export namespace Sensor {
         state: boolean,
         battery: number,
         tamper: boolean,
-        status: string
+        status: string,
+        uptodate: boolean
     }
 
     export const Names: { [key in Types]: string } = {
