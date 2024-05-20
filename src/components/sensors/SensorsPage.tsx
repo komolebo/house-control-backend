@@ -1,16 +1,18 @@
-import {Button, IconButton, Tooltip, Typography} from "@mui/material";
+import {IconButton, Tooltip, Typography} from "@mui/material";
 import {ReactComponent as LogoAddDev} from "../../assets/dev-add.svg";
 import {darkTheme} from "../mui/darkThemeStyle";
 import {POPUP_TYPE, useGlobalPopupContext} from "../popups/PopupProvider";
-import {ReactComponent as LogoSeverity} from "../../assets/notification-severity.svg";
+import {SensorsTable} from "./SensorsTable";
 
 export function SensorsPage() {
-    const {showPopup} = useGlobalPopupContext();
+    const {showPopup} = useGlobalPopupContext ();
 
     const addDevices = () => {
-        showPopup(POPUP_TYPE.AddSensor, {
-            onAct: (data) => {},
-            onClose: () => {},
+        showPopup (POPUP_TYPE.AddSensor, {
+            onAct: (data) => {
+            },
+            onClose: () => {
+            },
             data: {}
         })
     }
@@ -31,6 +33,8 @@ export function SensorsPage() {
                 </IconButton>
             </Tooltip>
         </div>
+
+        <SensorsTable/>
     </div>
 }
 

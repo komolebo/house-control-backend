@@ -3,7 +3,7 @@ import { SensorCard, SensorCardState } from "../elements/SensorCard";
 import { Sensor } from "../../../../globals/constants";
 
 interface IProps {
-    sensorInfo: Sensor.SensorRecord
+    sensorInfo: Sensor.SimpleRecord
 }
 
 export function SensorFinalSuccess({sensorInfo}: IProps) {

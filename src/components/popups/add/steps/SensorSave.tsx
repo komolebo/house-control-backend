@@ -9,10 +9,10 @@ interface IProps {
     onback: () => void,
     onsave: (data: any) => void,
     onerror: (msg: string) => void,
-    sensorRec: Sensor.SensorRecord
+    sensorRec: Sensor.SimpleRecord
 }
 interface ISensorDetailsProps {
-    sensorRec: Sensor.SensorRecord
+    sensorRec: Sensor.SimpleRecord
 }
 
 function SensorDetails({sensorRec}: ISensorDetailsProps) {

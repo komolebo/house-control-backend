@@ -31,7 +31,7 @@ const darkPalette = {
         main: "#1B1A43"
     },
     success: {
-        main: "green"
+        main: "#00990F"
     }
 }
 
@@ -294,6 +294,30 @@ darkTheme = createTheme(darkTheme, {
                         borderRadius: '50%',
                         backgroundColor: 'currentColor',
                     },
+                }
+            }
+        },
+        MuiTableCell: {
+            styleOverrides: {
+                root: {
+                    borderWidth: 0
+                }
+            }
+        },
+        MuiSwitch: {
+            styleOverrides: {
+                switchBase: {
+                    color: darkPalette.secondary.main
+                },
+                track: {
+                    // Controls default (unchecked) color for the track
+                    opacity: 0.2,
+                    backgroundColor: darkPalette.secondary.main,
+                    "$checked$checked + &": {
+                        // Controls checked color for the track
+                        opacity: 0.7,
+                        backgroundColor: "#fff"
+                    }
                 }
             }
         }

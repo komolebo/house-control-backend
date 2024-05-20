@@ -31,6 +31,17 @@ export namespace Sensor {
         Doors
     }
 
+    export type DetailedRecord = {
+        id: number,
+        sensorType: Sensor.Types,
+        name: string,
+        location: string,
+        state: boolean,
+        battery: number,
+        tamper: boolean,
+        status: string
+    }
+
     export const Names: { [key in Types]: string } = {
         [Types.Smoke]: "Smoke detector",
         [Types.Leak]: "Leak detector",
@@ -40,10 +51,11 @@ export namespace Sensor {
         [Types.Doors]: "Doors detector"
     };
 
-    export type SensorRecord = {
+    export type SimpleRecord = {
         id: number,
         sensorType: Types
     }
+
 }
 
 

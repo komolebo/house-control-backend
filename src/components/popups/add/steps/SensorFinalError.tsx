@@ -1,19 +1,19 @@
 import {Typography} from "@mui/material";
-import {SensorCard} from "../elements/SensorCard";
 import {Sensor} from "../../../../globals/constants";
 import {ReactComponent as LogoWarning} from "../../../../assets/warning.svg"
-import { darkTheme } from "../../../mui/darkThemeStyle";
+import {darkTheme} from "../../../mui/darkThemeStyle";
 
 interface IProps {
-    sensorRec?: Sensor.SensorRecord
+    sensorRec?: Sensor.SimpleRecord
 }
 
 export function SensorFinalError({sensorRec}: IProps) {
     return <div style={{
-        display: "flex", 
-        flexDirection: "column", 
-        width: "100%", 
-        alignItems: "center"}}
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        alignItems: "center"
+    }}
     >
         <div style={{padding: "20px 0 0 0"}}>
             <LogoWarning fill={darkTheme.palette.error.main}/>

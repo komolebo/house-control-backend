@@ -8,10 +8,10 @@ interface IProps {
     onclose: () => void,
     onconfirm: (idx: number) => void,
     onerror: (msg: string) => void,
-    sensorsData: Sensor.SensorRecord[]
+    sensorsData: Sensor.SimpleRecord[]
 }
 interface ISensorCardsProps {
-    sensorData: Sensor.SensorRecord[],
+    sensorData: Sensor.SimpleRecord[],
     selectedItemID: number,
     onselect: (id: number) => void
 }
@@ -55,7 +55,7 @@ function SensorCards({sensorData, onselect, selectedItemID}: ISensorCardsProps) 
         overflow: "auto", gap: "5px"
     }}
     >
-        {sensorData.map((el: Sensor.SensorRecord) => (
+        {sensorData.map((el: Sensor.SimpleRecord) => (
             <SensorCard
                 cardState={selectedItemID === el.id ? SensorCardState.selected : SensorCardState.unselected}
                 sensorType={el.sensorType}
