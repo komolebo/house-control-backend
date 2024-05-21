@@ -4,7 +4,7 @@ import {ReactComponent as LogoWarning} from "../../../../assets/warning.svg"
 import {darkTheme} from "../../../mui/darkThemeStyle";
 
 interface IProps {
-    sensorRec?: Sensor.SimpleRecord
+    sensorRec?: Sensor.EditableRecord
 }
 
 export function SensorFinalError({sensorRec}: IProps) {

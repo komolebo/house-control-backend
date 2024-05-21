@@ -49,6 +49,13 @@ export namespace Sensor {
         uptodate: boolean
     }
 
+    export type EditableRecord = {
+        id: number,
+        sensorType: Sensor.Types,
+        name?: string,
+        location?: string    
+    }
+
     export const Names: { [key in Types]: string } = {
         [Types.Smoke]: "Smoke detector",
         [Types.Leak]: "Leak detector",
@@ -57,12 +64,6 @@ export namespace Sensor {
         [Types.Plug]: "Plug detector",
         [Types.Doors]: "Doors detector"
     };
-
-    export type SimpleRecord = {
-        id: number,
-        sensorType: Types
-    }
-
 }
 
 

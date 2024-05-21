@@ -9,7 +9,6 @@ import {SensorScan} from "./steps/SensorScan";
 import {SensorConfirm} from "./steps/SensorConfirm";
 import {Sensor} from "../../../globals/constants";
 import {useGlobalPopupContext} from "../PopupProvider";
-import SensorRecord = Sensor.SimpleRecord;
 import Types = Sensor.Types;
 import RegistrationSteps = Sensor.RegistrationSteps;
 import {SensorFinalSuccess} from "./steps/SensorFinalSuccess";
@@ -18,7 +17,7 @@ import {SensorFinalError} from "./steps/SensorFinalError";
 interface IState {
     step: Sensor.RegistrationSteps, // displayed stepper value
     phase: Sensor.RegistrationSteps,
-    sensorsData: SensorRecord[],
+    sensorsData: Sensor.EditableRecord[],
     confirmedId: number,
     addedId: number,
     errorMsg: string,
@@ -115,7 +114,7 @@ export function AddSensorPopup() {
     const confirmErrCb = (msg?: string) => {
         setState({...state, phase: RegistrationSteps.failed, errorStep: RegistrationSteps.Confirm, errorMsg: msg ? msg : state.errorMsg});
     }
-    const saveCb = (data: Sensor.SimpleRecord) => {
+    const saveCb = (data: Sensor.EditableRecord) => {
         setState({...state, 
             addedId: data.id, 
             step: RegistrationSteps.Finished,

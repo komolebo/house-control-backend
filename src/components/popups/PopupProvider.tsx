@@ -1,14 +1,14 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 
 import {Card, IconButton, Modal} from "@mui/material";
 import positionStyles from "../../styles/common/position.module.css";
-import EditDevice from "./EditDevice";
 import RemoveDevicePopup from "./RemoveDevice";
 import SettingsPopup from "./SettingsPopup";
 import UpdateDevicePopup from "./UpdateDevice";
 import AddSensorPopup from "./add/AddSensorPopup";
 import {ReactComponent as LogoClose} from "../../assets/close.svg";
 import {darkTheme} from "../mui/darkThemeStyle";
+import { EditSensorPopup } from "./edit/EditSensorPopup";
 
 export enum POPUP_TYPE {
     AddSensor,
@@ -38,7 +38,7 @@ type ContextType = {
 // add here new modal dialogues
 const MODAL_COMPONENTS: any = {
     [POPUP_TYPE.AddSensor]: AddSensorPopup,
-    [POPUP_TYPE.EditDevice]: EditDevice,
+    [POPUP_TYPE.EditDevice]: EditSensorPopup,
     [POPUP_TYPE.RemoveDevice]: RemoveDevicePopup,
     [POPUP_TYPE.Settings]: SettingsPopup,
     [POPUP_TYPE.UpdateDevice]: UpdateDevicePopup,

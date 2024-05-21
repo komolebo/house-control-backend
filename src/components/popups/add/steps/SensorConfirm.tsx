@@ -1,4 +1,4 @@
-import {SensorCard, SensorCardState} from "../elements/SensorCard";
+import {SensorCard, SensorCardState} from "../../elements/SensorCard";
 import {Sensor} from "../../../../globals/constants";
 import Types = Sensor.Types;
 import {Box, Button} from "@mui/material";
@@ -8,10 +8,10 @@ interface IProps {
     onclose: () => void,
     onconfirm: (idx: number) => void,
     onerror: (msg: string) => void,
-    sensorsData: Sensor.SimpleRecord[]
+    sensorsData: Sensor.EditableRecord[]
 }
 interface ISensorCardsProps {
-    sensorData: Sensor.SimpleRecord[],
+    sensorData: Sensor.EditableRecord[],
     selectedItemID: number,
     onselect: (id: number) => void
 }
@@ -55,7 +55,7 @@ function SensorCards({sensorData, onselect, selectedItemID}: ISensorCardsProps) 
         overflow: "auto", gap: "5px",
     }}
     >
-        {sensorData.map((el: Sensor.SimpleRecord) => (
+        {sensorData.map((el: Sensor.EditableRecord) => (
             <SensorCard
                 cardState={selectedItemID === el.id ? SensorCardState.selected : SensorCardState.unselected}
                 sensorType={el.sensorType}

@@ -1,15 +1,14 @@
 import {Card, Typography} from "@mui/material";
-import React from "react";
-import {ReactComponent as LogoMotion} from "../../../../assets/sensor-motion.svg";
-import {ReactComponent as LogoSmoke} from "../../../../assets/sensor-smoke.svg";
-import {ReactComponent as LogoLeak} from "../../../../assets/sensor-leak.svg";
-import {ReactComponent as LogoGas} from "../../../../assets/sensor-gas.svg";
-import {ReactComponent as LogoDoors} from "../../../../assets/sensor-doors.svg";
-import {ReactComponent as LogoPlug} from "../../../../assets/sensor-plug.svg";
-import {ReactComponent as LogoCheck} from "../../../../assets/check-mark-round.svg";
-import {ReactComponent as LogoCircle} from "../../../../assets/filled-circle.svg";
-import {darkTheme} from "../../../mui/darkThemeStyle";
-import {Sensor} from "../../../../globals/constants";
+import {ReactComponent as LogoMotion} from "../../../assets/sensor-motion.svg";
+import {ReactComponent as LogoSmoke} from "../../../assets/sensor-smoke.svg";
+import {ReactComponent as LogoLeak} from "../../../assets/sensor-leak.svg";
+import {ReactComponent as LogoGas} from "../../../assets/sensor-gas.svg";
+import {ReactComponent as LogoDoors} from "../../../assets/sensor-doors.svg";
+import {ReactComponent as LogoPlug} from "../../../assets/sensor-plug.svg";
+import {ReactComponent as LogoCheck} from "../../../assets/check-mark-round.svg";
+import {ReactComponent as LogoCircle} from "../../../assets/filled-circle.svg";
+import {darkTheme} from "../../mui/darkThemeStyle";
+import {Sensor} from "../../../globals/constants";
 import Types = Sensor.Types;
 
 export enum SensorCardState {

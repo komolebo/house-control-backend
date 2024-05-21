@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
-import { SensorCard, SensorCardState } from "../elements/SensorCard";
+import { SensorCard, SensorCardState } from "../../elements/SensorCard";
 import { Sensor } from "../../../../globals/constants";
 
 interface IProps {
-    sensorInfo: Sensor.SimpleRecord
+    sensorInfo: Sensor.EditableRecord
 }
 
 export function SensorFinalSuccess({sensorInfo}: IProps) {

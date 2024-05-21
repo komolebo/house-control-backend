@@ -6,6 +6,7 @@ import {ReactComponent as LogoRemove} from "../../assets/remove.svg";
 import {ReactComponent as LogoClose} from "../../assets/close.svg";
 import {Menu} from "../../globals/constants"
 import {darkTheme} from "../mui/darkThemeStyle";
+import { POPUP_TYPE, useGlobalPopupContext } from "../popups/PopupProvider";
 
 interface IProps {
     updateAvailable: boolean,
@@ -21,6 +22,7 @@ type IMenuElement = {
 }
 
 export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, onclose, styles}: IProps) {
+    const {showPopup} = useGlobalPopupContext();
     const menu_items: IMenuElement[] = 
         updateAvailable ? [
             // Only include "Edit" and "Update" if update is available
@@ -35,6 +37,11 @@ export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, o
     const handleClick = (menuId: number) => {
         switch (menuId) {
             case Menu.SensorEdition.Edit:
+                showPopup(POPUP_TYPE.EditDevice, {
+                    onAct: () => {}, // update devices data here
+                    onClose: () => {},
+                    data: {}
+                })
                 return;
             case Menu.SensorEdition.Update:
                 return;
