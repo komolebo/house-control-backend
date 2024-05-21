@@ -1,5 +1,5 @@
 import {Sensor} from "../../globals/constants";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {ClickAwayListener, Fade, Paper, Popper, Table, TableContainer} from "@mui/material";
 import {SensorsTabHeader} from "./SensorsTabHeader";
 import {SensorsTabBody} from "./SensorsTabBody";

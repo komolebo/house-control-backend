@@ -1,5 +1,5 @@
 import { IconButton, ListItemIcon, ListItemText, MenuItem, MenuList, Paper } from "@mui/material";
-import React, {FC} from "react";
+import React, {FC, useEffect} from "react";
 import {ReactComponent as LogoEdit} from "../../assets/edit.svg";
 import {ReactComponent as LogoUpdate} from "../../assets/update.svg";
 import {ReactComponent as LogoRemove} from "../../assets/remove.svg";
@@ -52,6 +52,18 @@ export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, o
         }
     }
 
+    
+    useEffect (() => {
+        function handleEscapeKey(event: KeyboardEvent) {
+            if (event.code === 'Escape') {
+                onclose();
+            }
+        }
+
+        document.addEventListener ('keyup', handleEscapeKey)
+        return () => document.removeEventListener ('keyup', handleEscapeKey)
+    }, [])
+
     return <Paper sx={{p: 0, m: 0, display: "flex", ...styles}}>
         <MenuList>
             {menu_items.map ((item: IMenuElement) => (
@@ -80,8 +92,4 @@ export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, o
             />
         </IconButton>
     </Paper>
-}
-
-function useEffect(arg0: () => () => void, arg1: never[]) {
-    throw new Error("Function not implemented.");
 }

@@ -156,7 +156,7 @@ export function SensorsTabBody({sensorsData, onitemchange, onopensettings}: IPro
                         Set
                     </Typography>
                 ) : (
-                    <Typography variant="h3" color="error.main">
+                    <Typography variant="h3" color="warning.main">
                         Unset
                     </Typography>
                 )}
