@@ -6,9 +6,6 @@ import NotificationItem from "./NotificationItem";
 import {Box} from "@mui/material";
 import {NotificationObject, NotificationSeverity} from "../../../globals/NotificationData";
 
-interface IProps {
-    onclose: () => void
-}
 interface IState {
     notifications: NotificationObject[]
 }

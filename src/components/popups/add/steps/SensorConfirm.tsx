@@ -52,7 +52,7 @@ function SensorCards({sensorData, onselect, selectedItemID}: ISensorCardsProps) 
     return <Box sx={{display: "flex", maxWidth: "500px",
         padding: "40px 0 10px 0",
         justifyContent: sensors.length === 1 ? "center" : "space-between",
-        overflow: "auto", gap: "5px"
+        overflow: "auto", gap: "5px",
     }}
     >
         {sensorData.map((el: Sensor.SimpleRecord) => (

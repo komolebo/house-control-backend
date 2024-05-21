@@ -10,7 +10,7 @@ export function SensorScan({onact}: IProps) {
         const timeoutId = setTimeout(() => onact(true), 2000);
 
         return () => clearTimeout(timeoutId);
-    }, []);
+    }, [onact]);
 
     return <div style={{
         display: "flex", flexDirection: "column", alignItems: "center",

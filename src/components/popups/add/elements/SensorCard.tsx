@@ -64,7 +64,7 @@ function SensorLogo({sensorType, cardState, styles}: ILogoProps) {
 }
 
 export function SensorCard({cardState, sensorType, onclick }: IProps) {
-    const interactive: boolean = onclick != undefined;
+    const interactive: boolean = onclick !== undefined;
 
     const color = colorByCardState(cardState);
     const hoverColor = color //active ? color : darkTheme.palette.secondary.main;
@@ -74,7 +74,7 @@ export function SensorCard({cardState, sensorType, onclick }: IProps) {
     return <Card
         sx={{
             padding: 4,
-            bgcolor: "background.light",
+            bgcolor: "background.paper",
             border: "1px solid " + borderColor,
             // width: "fit-content",
             minWidth: 200,

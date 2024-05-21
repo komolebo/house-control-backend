@@ -1,6 +1,5 @@
 import {createTheme} from "@mui/material";
 import {commonMuiComponentStyles, typographyStyle} from "./bothThemeStyles";
-import {darkTheme} from "./darkThemeStyle";
 
 export let lightTheme = createTheme ({});
 

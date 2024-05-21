@@ -1,11 +1,11 @@
-import { IconButton, ListItemIcon, ListItemText, MenuItem, MenuList, Paper } from "@mui/material";
+import {IconButton, ListItemIcon, ListItemText, MenuItem, MenuList, Paper} from "@mui/material";
 import React, {FC, useEffect} from "react";
 import {ReactComponent as LogoEdit} from "../../assets/edit.svg";
 import {ReactComponent as LogoUpdate} from "../../assets/update.svg";
 import {ReactComponent as LogoRemove} from "../../assets/remove.svg";
 import {ReactComponent as LogoClose} from "../../assets/close.svg";
 import {Menu} from "../../globals/constants"
-import { darkTheme } from "../mui/darkThemeStyle";
+import {darkTheme} from "../mui/darkThemeStyle";
 
 interface IProps {
     updateAvailable: boolean,
@@ -62,7 +62,7 @@ export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, o
 
         document.addEventListener ('keyup', handleEscapeKey)
         return () => document.removeEventListener ('keyup', handleEscapeKey)
-    }, [])
+    }, [onclose])
 
     return <Paper sx={{p: 0, m: 0, display: "flex", ...styles}}>
         <MenuList>

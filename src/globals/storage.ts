@@ -1,7 +1,7 @@
 // import jwtDecode from "jwt-decode";
 
 const DARK_MODE_TOKEN = "DARK_MODE_TOKEN"
-const USER_TOKEN = "USER_TOKEN"
+// const USER_TOKEN = "USER_TOKEN"
 const IS_DARK_MODE_DEFAULT = true;
 
 // export interface IUserSetting {

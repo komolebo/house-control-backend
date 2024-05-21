@@ -88,7 +88,7 @@ export function NotificationItem({date, id, isRead, severity, text, onremove, on
     >
         <NotifyStatus status={severity}/>
         <NotifyInfo text={text} date={date}/>
-        <NotifyAction isRead={isRead} recentlyRead={id == 2 || id == 3} onread={read} onremove={remove}/>
+        <NotifyAction isRead={isRead} recentlyRead={id === 2 || id === 3} onread={read} onremove={remove}/>
     </div>
 }
 

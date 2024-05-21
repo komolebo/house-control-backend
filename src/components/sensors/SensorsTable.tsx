@@ -1,16 +1,17 @@
 import {Sensor} from "../../globals/constants";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {ClickAwayListener, Fade, Paper, Popper, Table, TableContainer} from "@mui/material";
 import {SensorsTabHeader} from "./SensorsTabHeader";
 import {SensorsTabBody} from "./SensorsTabBody";
+import {SensorSettingsMenu} from "./SensorSettingsMenu";
+import {darkTheme} from "../mui/darkThemeStyle";
 import Types = Sensor.Types;
-import { SensorSettingsMenu } from "./SensorSettingsMenu";
-import { darkTheme } from "../mui/darkThemeStyle";
 
 interface IState {
     sensors: Sensor.DetailedRecord[],
     settingsPopper: ISettingsPopperProps
 }
+
 interface ISettingsPopperProps {
     anchor: HTMLButtonElement | undefined,
     sensorId: number
@@ -103,7 +104,7 @@ const headerItems: string[] = [
 export function SensorsTable() {
     const [state, setState] = useState<IState> ({
         sensors: sensors,
-        settingsPopper: { anchor: undefined, sensorId: -1}
+        settingsPopper: {anchor: undefined, sensorId: -1}
     })
 
     const updateItem = ((sensorRec: Sensor.DetailedRecord) => {
@@ -111,33 +112,33 @@ export function SensorsTable() {
         setState ({...state, sensors: newArr});
     })
     const showSettings = (anchor: HTMLButtonElement, sensorId: number) => {
-        setState({...state, settingsPopper: {anchor: anchor, sensorId: sensorId}});
+        setState ({...state, settingsPopper: {anchor: anchor, sensorId: sensorId}});
     }
     const hideSettings = () => {
-        setState({...state, settingsPopper: {anchor: undefined, sensorId: -1}});
+        setState ({...state, settingsPopper: {anchor: undefined, sensorId: -1}});
     }
 
     return <div style={{maxWidth: "100%"}}>
-        { state.settingsPopper.anchor != undefined ?
-            <ClickAwayListener onClickAway={() => state.settingsPopper.anchor != undefined ? hideSettings() : {}}>
+        {state.settingsPopper.anchor !== undefined ?
+            <ClickAwayListener onClickAway={() => state.settingsPopper.anchor !== undefined ? hideSettings () : {}}>
                 <Popper
                     // Note: The following zIndex style is specifically for documentation purposes and may not be necessary in your application.
-                    sx={{ zIndex: 1200 }}
-                    open={state.settingsPopper.anchor != undefined}
+                    sx={{zIndex: 1200}}
+                    open={state.settingsPopper.anchor !== undefined}
                     anchorEl={state.settingsPopper.anchor}
                     transition
                 >
-                    {({ TransitionProps }) => (
+                    {({TransitionProps}) => (
                         <Fade {...TransitionProps} timeout={350}>
-                        <Paper>
-                            <SensorSettingsMenu 
-                                styles={{bgcolor: darkTheme.palette.background.default}}
-                                onclose={hideSettings}
-                                updateAvailable={!!state.sensors.find(el => el.id === state.settingsPopper.sensorId)?.uptodate} 
-                                updateTemporaryForbidden={false}
-                            />
-                        </Paper>
-                    </Fade>
+                            <Paper>
+                                <SensorSettingsMenu
+                                    styles={{bgcolor: darkTheme.palette.background.paper}}
+                                    onclose={hideSettings}
+                                    updateAvailable={!!state.sensors.find (el => el.id === state.settingsPopper.sensorId)?.uptodate}
+                                    updateTemporaryForbidden={false}
+                                />
+                            </Paper>
+                        </Fade>
                     )}
                 </Popper>
             </ClickAwayListener> : <></>
@@ -147,8 +148,8 @@ export function SensorsTable() {
             <Table aria-label="collapsible table">
                 <SensorsTabHeader headerItems={headerItems} styles={{p: 100}}/>
 
-                <SensorsTabBody sensorsData={state.sensors} 
-                                onitemchange={updateItem} 
+                <SensorsTabBody sensorsData={state.sensors}
+                                onitemchange={updateItem}
                                 onopensettings={showSettings}
                 />
             </Table>

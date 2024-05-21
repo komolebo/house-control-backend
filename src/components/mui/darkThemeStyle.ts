@@ -1,4 +1,4 @@
-import {createTheme, darkScrollbar} from "@mui/material";
+import {createTheme} from "@mui/material";
 import {lightTheme} from "./lightThemeStyle";
 import {commonMuiComponentStyles, typographyStyle} from "./bothThemeStyles";
 
@@ -7,7 +7,7 @@ export let darkTheme = createTheme ({});
 const darkPalette = {
     background: {
         default: "#14131B",
-        light: "#191A1E"
+        paper: "#191A1E"
     },
     action: {
         disabledBackground: 'rgba(255,255,255,0.1)',
@@ -54,7 +54,7 @@ darkTheme = createTheme(darkTheme, {
                         backgroundColor: darkPalette.secondary.main,
                         // minHeight: 10,
                         border: "6px solid",
-                        borderColor: darkPalette.background.light
+                        borderColor: darkPalette.background.paper
                     },
                     "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
                         backgroundColor: darkPalette.info.main,
@@ -80,7 +80,7 @@ darkTheme = createTheme(darkTheme, {
             styleOverrides: {
                 root: {
                     "&:hover, &.Mui-selected:hover": {
-                        backgroundColor: darkPalette.background.light,
+                        backgroundColor: darkPalette.background.paper,
                         color: "white"
                     },
                     '&.Mui-selected': {
