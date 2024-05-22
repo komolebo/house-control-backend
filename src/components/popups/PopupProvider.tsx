@@ -80,7 +80,8 @@ export function PopupProvider({children}: IPropGlobalModal) {
     useEffect (() => {
         function handleEscapeKey(event: KeyboardEvent) {
             if (event.code === 'Escape') {
-                hidePopup ()
+                popupProps.onClose ();
+                hidePopup ();
             }
         }
 
@@ -123,7 +124,10 @@ export function PopupProvider({children}: IPropGlobalModal) {
                     className="blur"
                 >
                     <div className={positionStyles.floatr} style={{width: 20, height: 20}}
-                         onClick={() => hidePopup ()}
+                         onClick={() => {
+                            popupProps.onClose();
+                            hidePopup ();
+                         } }
                     >
                         <IconButton>
                             <LogoClose fill={darkTheme.palette.secondary.main}/>

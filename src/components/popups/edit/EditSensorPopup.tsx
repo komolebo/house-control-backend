@@ -1,10 +1,11 @@
-import { Button, Typography } from "@mui/material"
+import { Button, Typography, useScrollTrigger } from "@mui/material"
 import { Sensor } from "../../../globals/constants"
 import { POPUP_TYPE, useGlobalPopupContext } from "../PopupProvider"
 import { ModifySensor } from "../elements/ModifySensor"
+import { useState } from "react"
 
 interface IProps {
-    sensor?: Sensor.DetailedRecord
+    sensor: Sensor.DetailedRecord
 }
 interface IButtonsProps {
     disabled: boolean,
@@ -36,15 +37,28 @@ function EditSensorHeader() {
     </div>
 }
 
-export function EditSensorPopup({sensor}: IProps) {
+export function EditSensorPopup() {
     const {hidePopup, popupProps} = useGlobalPopupContext();
+    const {sensor}: IProps = popupProps.data;
+    const [changedSensor, setChangedSensor] = useState<Sensor.EditableRecord>({...sensor}); // deep copy
 
-    const inputValid = () => {
-        return true;
+    const inputDataValid = () : boolean => {
+        if (sensor.name === changedSensor.name) {// && sensor.location === changedSensor.location) {
+            return false; // data is same -> consider as an invalid input
+        }
+        // check name validity
+        return changedSensor.name !== undefined && changedSensor.name.length > 0;
     }
     const saveChange = () => {
-
+        popupProps.onAct(changedSensor);
+        // make here socket request to update data
     }
+    const updateSensorValue = (newSensorValue: Sensor.EditableRecord) => {
+        const newName = newSensorValue.name !== undefined ? newSensorValue.name : changedSensor.name;
+        const newLocation = newSensorValue.location !== undefined ? newSensorValue.location : changedSensor.location;
+        setChangedSensor({...changedSensor, name: newName, location: newLocation});
+    }
+
     const close = () => {
         hidePopup();
     }
@@ -52,8 +66,8 @@ export function EditSensorPopup({sensor}: IProps) {
     return <div>
         <EditSensorHeader/>
 
-        <ModifySensor sensor={{id: 2, location: "Kitchen", name: "Some name", sensorType: Sensor.Types.Leak}}/>
+        <ModifySensor sensor={changedSensor} onupdate={updateSensorValue}/>
 
-        <EditSensorButtons disabled={inputValid()} onclose={close} onconfirm={saveChange} />
+        <EditSensorButtons disabled={!inputDataValid()} onclose={close} onconfirm={saveChange} />
     </div>
 }

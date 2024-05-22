@@ -4,13 +4,13 @@ import {ReactComponent as LogoEdit} from "../../assets/edit.svg";
 import {ReactComponent as LogoUpdate} from "../../assets/update.svg";
 import {ReactComponent as LogoRemove} from "../../assets/remove.svg";
 import {ReactComponent as LogoClose} from "../../assets/close.svg";
-import {Menu} from "../../globals/constants"
+import {Menu, Sensor} from "../../globals/constants"
 import {darkTheme} from "../mui/darkThemeStyle";
 import { POPUP_TYPE, useGlobalPopupContext } from "../popups/PopupProvider";
 
 interface IProps {
-    updateAvailable: boolean,
-    updateTemporaryForbidden: boolean,
+    anotherSensorUpdating: boolean,
+    sensor: Sensor.DetailedRecord,
     styles: any,
     onclose: () => void
 }
@@ -21,11 +21,11 @@ type IMenuElement = {
     text: string
 }
 
-export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, onclose, styles}: IProps) {
-    const {showPopup} = useGlobalPopupContext();
-    const menu_items: IMenuElement[] = 
-        updateAvailable ? [
-            // Only include "Edit" and "Update" if update is available
+export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styles}: IProps) {
+    const {showPopup, hidePopup} = useGlobalPopupContext();
+    const menuItems: IMenuElement[] = 
+        !sensor.uptodate ? [
+            // Include "Update" only if update is available
             { component: LogoEdit, text: "Edit", id: Menu.SensorEdition.Edit },
             { component: LogoUpdate, text: "Update", id: Menu.SensorEdition.Update },
             { component: LogoRemove, text: "Remove", id: Menu.SensorEdition.Remove },
@@ -38,9 +38,13 @@ export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, o
         switch (menuId) {
             case Menu.SensorEdition.Edit:
                 showPopup(POPUP_TYPE.EditDevice, {
-                    onAct: () => {}, // update devices data here
-                    onClose: () => {},
-                    data: {}
+                    onAct: () => {
+                        hidePopup();
+                    }, // update devices data here
+                    onClose: () => {
+                        onclose();
+                    },
+                    data: {sensor: sensor}
                 })
                 return;
             case Menu.SensorEdition.Update:
@@ -73,17 +77,17 @@ export function SensorSettingsMenu({updateAvailable, updateTemporaryForbidden, o
 
     return <Paper sx={{p: 0, m: 0, display: "flex", ...styles}}>
         <MenuList>
-            {menu_items.map ((item: IMenuElement) => (
+            {menuItems.map ((item: IMenuElement) => (
                 <MenuItem
                     key={item.id}
                     onClick={() => handleClick (item.id)}
                 >
 
                     <ListItemIcon sx={{p: 2}}>
-                        <item.component fill={whichColor(item.id, updateTemporaryForbidden)}/>
+                        <item.component fill={whichColor(item.id, anotherSensorUpdating)}/>
                     </ListItemIcon>
 
-                    <ListItemText sx={{color: whichColor(item.id, updateTemporaryForbidden)}}>
+                    <ListItemText sx={{color: whichColor(item.id, anotherSensorUpdating)}}>
                         {item.text}
                     </ListItemText>
 

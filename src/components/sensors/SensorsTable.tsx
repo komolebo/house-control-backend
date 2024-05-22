@@ -9,12 +9,13 @@ import Types = Sensor.Types;
 
 interface IState {
     sensors: Sensor.DetailedRecord[],
-    settingsPopper: ISettingsPopperProps
+    settingsPopper: ISettingsPopperProps,
+    updatingSensorId: number
 }
 
 interface ISettingsPopperProps {
     anchor: HTMLButtonElement | undefined,
-    sensorId: number
+    sensor?: Sensor.DetailedRecord
 }
 
 const sensors: Sensor.DetailedRecord[] = [
@@ -104,7 +105,8 @@ const headerItems: string[] = [
 export function SensorsTable() {
     const [state, setState] = useState<IState> ({
         sensors: sensors,
-        settingsPopper: {anchor: undefined, sensorId: -1}
+        settingsPopper: {anchor: undefined, sensor: undefined},
+        updatingSensorId: -1
     })
 
     const updateItem = ((sensorRec: Sensor.DetailedRecord) => {
@@ -112,36 +114,45 @@ export function SensorsTable() {
         setState ({...state, sensors: newArr});
     })
     const showSettings = (anchor: HTMLButtonElement, sensorId: number) => {
-        setState ({...state, settingsPopper: {anchor: anchor, sensorId: sensorId}});
+        const sensor = state.sensors.find(el => el.id === sensorId);
+
+        setState ({...state, settingsPopper: {anchor: anchor, sensor: sensor}});
     }
     const hideSettings = () => {
-        setState ({...state, settingsPopper: {anchor: undefined, sensorId: -1}});
+        setState ({...state, settingsPopper: {anchor: undefined, sensor: undefined}});
     }
 
+    const isSettingsOpen = state.settingsPopper.anchor !== undefined && state.settingsPopper.sensor !== undefined;
+
     return <div style={{maxWidth: "100%"}}>
-        {state.settingsPopper.anchor !== undefined ?
-            <ClickAwayListener onClickAway={() => state.settingsPopper.anchor !== undefined ? hideSettings () : {}}>
-                <Popper
-                    // Note: The following zIndex style is specifically for documentation purposes and may not be necessary in your application.
-                    sx={{zIndex: 1200}}
-                    open={state.settingsPopper.anchor !== undefined}
-                    anchorEl={state.settingsPopper.anchor}
-                    transition
+        { isSettingsOpen ? (
+            <ClickAwayListener onClickAway={() => state.settingsPopper.anchor ? hideSettings () : {}}>
+            <Popper
+                // Note: The following zIndex style is specifically for documentation purposes and may not be necessary in your application.
+                sx={{zIndex: 1200}}
+                // open={state.settingsPopper.anchor !== undefined && state.settingsPopper.sensor !== undefined}
+                open={true}
+                anchorEl={state.settingsPopper.anchor}
+                transition
                 >
-                    {({TransitionProps}) => (
-                        <Fade {...TransitionProps} timeout={350}>
-                            <Paper>
+                {({TransitionProps}) => (
+                    <Fade {...TransitionProps} timeout={350}>
+                        <Paper>
+                            {state.settingsPopper.sensor ? (
                                 <SensorSettingsMenu
                                     styles={{bgcolor: darkTheme.palette.background.paper}}
                                     onclose={hideSettings}
-                                    updateAvailable={!!state.sensors.find (el => el.id === state.settingsPopper.sensorId)?.uptodate}
-                                    updateTemporaryForbidden={false}
+                                    sensor={state.settingsPopper.sensor}
+                                        anotherSensorUpdating={state.updatingSensorId != -1}
                                 />
-                            </Paper>
-                        </Fade>
-                    )}
-                </Popper>
-            </ClickAwayListener> : <></>
+                                ) : (<div></div>)
+                            }
+                        </Paper>
+                    </Fade>
+                )}
+            </Popper>
+        </ClickAwayListener>
+        ) : <></>            
         }
 
         <TableContainer component={Paper} sx={{p: 2}}>

@@ -4,24 +4,26 @@ import { SensorCard, SensorCardState } from "./SensorCard";
 import { useState } from "react";
 
 interface IProps {
-    sensor: Sensor.EditableRecord
+    sensor: Sensor.EditableRecord,
+    onupdate: (value: Sensor.EditableRecord) => void
 }
 interface IState {
     sensor: Sensor.EditableRecord
 }
 
 
-export function ModifySensor({sensor}: IProps) {
+export function ModifySensor({sensor, onupdate}: IProps) {
     const [state, setState] = useState<IState>({
         sensor: sensor
     });
 
     const locations = ["Kitchen", "Hall", "None"];
 
-    const changeName = () => {
-        return (event: React.ChangeEvent<HTMLInputElement>) => {
-
-        }
+    const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newName: string= event.target.value;
+        state.sensor.name = newName;
+        setState({sensor: state.sensor});
+        onupdate(state.sensor);
     }
 
     return <div style={{display: "flex", width: "100%"}}>

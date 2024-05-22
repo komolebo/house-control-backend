@@ -16,7 +16,7 @@ interface ISensorDetailsProps {
 export function SensorSave({onback, onsave, sensorRec, onerror}: IProps) {
     return <div>
         <div style={{paddingBottom: 15, paddingTop: 25}}>
-            <ModifySensor sensor={sensorRec}/>
+            <ModifySensor sensor={sensorRec} onupdate={() => {}}/>
         </div>
 
         <AddSensorActionButtons
