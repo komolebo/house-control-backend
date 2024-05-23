@@ -177,7 +177,7 @@ export function SensorsTabBody({sensorsData, onitemchange, onopensettings}: IPro
 
                 <TableCell>
                     <IconButton aria-label={"some label"} onClick={openSettings (item.id)}>
-                        <Badge color="warning" badgeContent={item.uptodate ? 1 : 0}>
+                        <Badge color="warning" badgeContent={item.uptodate ? 0 : 1}>
                             <LogoSettingsDots fill={darkTheme.palette.secondary.main}/>
                         </Badge>
                     </IconButton>

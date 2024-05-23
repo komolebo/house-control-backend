@@ -28,7 +28,7 @@ const sensors: Sensor.DetailedRecord[] = [
         state: true,
         tamper: true,
         status: "Connected",
-        uptodate: false
+        uptodate: true
     },
     {
         id: 1,
@@ -39,7 +39,7 @@ const sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Leak,
         location: "Hall",
         status: "Lost connection",
-        uptodate: true
+        uptodate: false
     },
     {
         id: 2,
@@ -61,7 +61,7 @@ const sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Doors,
         location: "Doors",
         status: "Connected",
-        uptodate: false
+        uptodate: true
     },
     {
         id: 4,
@@ -72,7 +72,7 @@ const sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Plug,
         location: "Bedroom",
         status: "Connected",
-        uptodate: false
+        uptodate: true
     },
     {
         id: 5,
@@ -83,7 +83,7 @@ const sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Doors,
         location: "Doors",
         status: "Connected",
-        uptodate: false
+        uptodate: true
     },
     {
         id: 6,
@@ -94,7 +94,7 @@ const sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Gas,
         location: "Kitchen",
         status: "Connected",
-        uptodate: false
+        uptodate: true
     },
 ]
 const headerItems: string[] = [
@@ -143,7 +143,7 @@ export function SensorsTable() {
                                     styles={{bgcolor: darkTheme.palette.background.paper}}
                                     onclose={hideSettings}
                                     sensor={state.settingsPopper.sensor}
-                                        anotherSensorUpdating={state.updatingSensorId != -1}
+                                    anotherSensorUpdating={state.updatingSensorId != -1}
                                 />
                                 ) : (<div></div>)
                             }

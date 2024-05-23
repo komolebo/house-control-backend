@@ -1,6 +1,6 @@
-import { Button, Typography, useScrollTrigger } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { Sensor } from "../../../globals/constants"
-import { POPUP_TYPE, useGlobalPopupContext } from "../PopupProvider"
+import { useGlobalPopupContext } from "../PopupProvider"
 import { ModifySensor } from "../elements/ModifySensor"
 import { useState } from "react"
 

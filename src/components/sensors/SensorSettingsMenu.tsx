@@ -48,7 +48,16 @@ export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styl
                 })
                 break;
             case Menu.SensorEdition.Update:
-                return;
+                showPopup(POPUP_TYPE.UpdateDevice, {
+                    onAct: () => {
+                        hidePopup();
+                    }, // update devices data here
+                    onClose: () => {
+                        hidePopup();
+                    },
+                    data: {sensor: sensor}
+                })
+                break;
             case Menu.SensorEdition.Remove:
                 showPopup(POPUP_TYPE.RemoveDevice, {
                     onAct: () => {
@@ -60,7 +69,7 @@ export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styl
                     },
                     data: {sensor: sensor}
                 })
-                return;
+                break;
         }
     }
     const whichColor = (menuId: Menu.SensorEdition, disabled: boolean) => {
