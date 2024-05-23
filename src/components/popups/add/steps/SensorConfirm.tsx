@@ -22,16 +22,6 @@ interface IAddSensorActionProps {
     actionText: string
 }
 
-const sensors = [
-    Types.Plug,
-    Types.Smoke,
-    Types.Leak,
-    Types.Leak,
-    Types.Plug,
-    Types.Smoke,
-    // Types.Leak, Types.Leak, Types.Leak, Types.Plug, Types.Smoke, Types.Leak, Types.Leak, Types.Leak,
-]
-
 export function AddSensorActionButtons({disabled, onclose, onconfirm, actionText}: IAddSensorActionProps) {
     return <div style={{paddingTop: 30, display: "flex", justifyContent: "flex-end"}}>
         <Button variant="text" color="primary"
@@ -49,10 +39,11 @@ export function AddSensorActionButtons({disabled, onclose, onconfirm, actionText
 }
 
 function SensorCards({sensorData, onselect, selectedItemID}: ISensorCardsProps) {
-    return <Box sx={{display: "flex", maxWidth: "500px",
+    return <Box sx={{display: "flex", maxWidth: "100%",
+        flexWrap: "nowrap",
         padding: "40px 0 10px 0",
-        justifyContent: sensors.length === 1 ? "center" : "space-between",
-        overflow: "auto", gap: "5px",
+        justifyContent: sensorData.length === 1 ? "center" : "space-around",
+        overflowX: "auto", gap: "8px",
     }}
     >
         {sensorData.map((el: Sensor.EditableRecord) => (

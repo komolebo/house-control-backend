@@ -9,9 +9,6 @@ interface IProps {
     onerror: (msg: string) => void,
     sensorRec: Sensor.EditableRecord
 }
-interface ISensorDetailsProps {
-    sensorRec: Sensor.EditableRecord
-}
 
 export function SensorSave({onback, onsave, sensorRec, onerror}: IProps) {
     return <div>

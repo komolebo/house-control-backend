@@ -100,6 +100,7 @@ export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styl
                 <MenuItem
                     key={item.id}
                     onClick={() => handleClick (item.id)}
+                    disabled={anotherSensorUpdating && item.id === Menu.SensorEdition.Update}
                 >
 
                     <ListItemIcon sx={{p: 2}}>

@@ -75,7 +75,7 @@ export function SensorCard({cardState, sensorType, onclick }: IProps) {
             padding: 4,
             bgcolor: "background.paper",
             border: "1px solid " + borderColor,
-            width: 200,
+            minWidth: 200,
             display: "flex", flexDirection: "column",
 
             ':hover':

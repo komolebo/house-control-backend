@@ -106,10 +106,10 @@ export function SensorsTable() {
     const [state, setState] = useState<IState> ({
         sensors: sensors,
         settingsPopper: {anchor: undefined, sensor: undefined},
-        updatingSensorId: -1
+        updatingSensorId: 4
     })
 
-    const updateItem = ((sensorRec: Sensor.DetailedRecord) => {
+    const changeItem = ((sensorRec: Sensor.DetailedRecord) => {
         const newArr = state.sensors.map ((item) => item.id === sensorRec.id ? sensorRec : item);
         setState ({...state, sensors: newArr});
     })
@@ -160,8 +160,10 @@ export function SensorsTable() {
                 <SensorsTabHeader headerItems={headerItems} styles={{p: 100}}/>
 
                 <SensorsTabBody sensorsData={state.sensors}
-                                onitemchange={updateItem}
+                                onitemchange={changeItem}
                                 onopensettings={showSettings}
+                                updatingItemId={state.updatingSensorId}
+                                columnsCount={headerItems.length}
                 />
             </Table>
         </TableContainer>

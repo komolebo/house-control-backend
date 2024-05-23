@@ -94,7 +94,8 @@ export function AddSensorPopup() {
         sensorsData: [
             {id: 0, sensorType: Types.Leak},
             {id: 1, sensorType: Types.Doors},
-            {id: 2, sensorType: Types.Motion}
+            {id: 2, sensorType: Types.Motion},
+            {id: 3, sensorType: Types.Motion},
         ]
     })
 

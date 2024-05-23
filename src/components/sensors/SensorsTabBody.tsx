@@ -22,11 +22,14 @@ import {ReactComponent as LogoBatteryLevelLow} from "../../assets/battery-indica
 import {ReactComponent as LogoBatteryLevelMid} from "../../assets/battery-indicator-middle.svg"
 import {ReactComponent as LogoBatteryLevelHigh} from "../../assets/battery-indicator-high.svg"
 import {ReactComponent as LogoSettingsDots} from "../../assets/settings-dots.svg"
-import {FC} from "react";
+import React, {FC} from "react";
 import {darkTheme} from "../mui/darkThemeStyle";
+import {SensorUpdateProgress} from "../popups/elements/UpdateProgress";
 
 interface IProps {
     sensorsData: Sensor.DetailedRecord[],
+    updatingItemId: number,
+    columnsCount: number,
     onitemchange: (item: Sensor.DetailedRecord) => void,
     onopensettings: (
         anchor: HTMLButtonElement,
@@ -41,6 +44,11 @@ interface IBatteryProps {
 interface ILogoProps {
     sensorType: Sensor.Types,
     styles?: any
+}
+
+interface IUpdatingLabelProps {
+    sensor: Sensor.DetailedRecord,
+    columnsCount: number
 }
 
 function SensorLogo({sensorType, styles}: ILogoProps) {
@@ -86,7 +94,18 @@ function BatteryIndicator({level}: IBatteryProps) {
     </div>
 }
 
-export function SensorsTabBody({sensorsData, onitemchange, onopensettings}: IProps) {
+function UpdatingLabelArea({sensor, columnsCount}: IUpdatingLabelProps) {
+    return <TableCell colSpan={columnsCount} align="center">
+        {/*<div style={{display: "flex"}}>*/}
+        <SensorUpdateProgress percent={10}/>
+        <Typography variant="h4" color="info.main">
+            Updating "{sensor.name}"
+        </Typography>
+        {/*</div>*/}
+    </TableCell>
+}
+
+export function SensorsTabBody({sensorsData, onitemchange, onopensettings, updatingItemId, columnsCount}: IProps) {
     const changeState = (id: number) => {
         const sensorRecord = sensorsData.find (el => el.id === id);
         if (sensorRecord) {
@@ -99,91 +118,102 @@ export function SensorsTabBody({sensorsData, onitemchange, onopensettings}: IPro
         }
     }
 
+    const updatingItem: Sensor.DetailedRecord | undefined = updatingItemId !== -1 ?
+        sensorsData.find ((el) => el.id === updatingItemId)
+        : undefined;
+
+
     return <TableBody>
         {sensorsData.map ((item: Sensor.DetailedRecord) => (
-            <TableRow key={item.id}>
-                {/* type */}
-                <TableCell align="left">
-                    <SensorLogo sensorType={item.sensorType}/>
-                </TableCell>
+            updatingItem && updatingItem.id === item.id ? (
+                <TableRow>
+                    <UpdatingLabelArea sensor={updatingItem} columnsCount={columnsCount}/>
+                </TableRow>
+            ) : (
+                <TableRow key={item.id}>
+                    {/* type */}
+                    <TableCell align="left">
+                        <SensorLogo sensorType={item.sensorType}/>
+                    </TableCell>
 
-                {/* name */}
-                <TableCell align="left">
-                    <Typography variant="h3" color="secondary.main">
-                        {item.name}
-                    </Typography>
-                </TableCell>
-
-                {/* location */}
-                <TableCell align="left">
-                    <Typography variant="h3" color="secondary.main">
-                        {item.location}
-                    </Typography>
-                </TableCell>
-
-                {/* state */}
-                <TableCell align="left">
-                    <FormControl
-                        component="fieldset"
-                        sx={{
-                            '& .MuiFormControlLabel-label': {
-                                color: item.state ? darkTheme.palette.info.main : darkTheme.palette.secondary.main
-                            },
-                        }}
-                    >
-                        <FormGroup aria-label="position" row>
-                            <FormControlLabel
-                                value={item.state}
-                                checked={item.state}
-                                control={<Switch color="info"/>}
-                                label={item.state ? "On" : "Off"}
-                                labelPlacement="bottom"
-                                onClick={() => changeState (item.id)}
-                            />
-                        </FormGroup>
-                    </FormControl>
-                </TableCell>
-
-                {/* battery */}
-                <TableCell align="left">
-                    <BatteryIndicator level={item.battery}/>
-                </TableCell>
-
-                {/* tamper */}
-                <TableCell align="left">
-                    {item.tamper ? (
+                    {/* name */}
+                    <TableCell align="left">
                         <Typography variant="h3" color="secondary.main">
-                            Set
+                            {item.name}
                         </Typography>
-                    ) : (
-                        <Typography variant="h3" color="warning.main">
-                            Unset
-                        </Typography>
-                    )}
-                </TableCell>
+                    </TableCell>
 
-                {/* status */}
-                <TableCell align="left">
-                    {item.status === "Connected" ? (
+                    {/* location */}
+                    <TableCell align="left">
                         <Typography variant="h3" color="secondary.main">
-                            Connected
+                            {item.location}
                         </Typography>
-                    ) : (
-                        <Typography variant="h3" color="error.main">
-                            Disconnected
-                        </Typography>
-                    )}
-                </TableCell>
+                    </TableCell>
 
-                <TableCell>
-                    <IconButton aria-label={"some label"} onClick={openSettings (item.id)}>
-                        <Badge color="warning" badgeContent={item.uptodate ? 0 : 1}>
-                            <LogoSettingsDots fill={darkTheme.palette.secondary.main}/>
-                        </Badge>
-                    </IconButton>
-                </TableCell>
+                    {/* state */}
+                    <TableCell align="left">
+                        <FormControl
+                            component="fieldset"
+                            sx={{
+                                '& .MuiFormControlLabel-label': {
+                                    color: item.state ? darkTheme.palette.info.main : darkTheme.palette.secondary.main
+                                },
+                            }}
+                        >
+                            <FormGroup aria-label="position" row>
+                                <FormControlLabel
+                                    value={item.state}
+                                    checked={item.state}
+                                    control={<Switch color="info"/>}
+                                    label={item.state ? "On" : "Off"}
+                                    labelPlacement="bottom"
+                                    onClick={() => changeState (item.id)}
+                                />
+                            </FormGroup>
+                        </FormControl>
+                    </TableCell>
 
-            </TableRow>
+                    {/* battery */}
+                    <TableCell align="left">
+                        <BatteryIndicator level={item.battery}/>
+                    </TableCell>
+
+                    {/* tamper */}
+                    <TableCell align="left">
+                        {item.tamper ? (
+                            <Typography variant="h3" color="secondary.main">
+                                Set
+                            </Typography>
+                        ) : (
+                            <Typography variant="h3" color="warning.main">
+                                Unset
+                            </Typography>
+                        )}
+                    </TableCell>
+
+                    {/* status */}
+                    <TableCell align="left">
+                        {item.status === "Connected" ? (
+                            <Typography variant="h3" color="secondary.main">
+                                Connected
+                            </Typography>
+                        ) : (
+                            <Typography variant="h3" color="error.main">
+                                Disconnected
+                            </Typography>
+                        )}
+                    </TableCell>
+
+                    <TableCell>
+                        <IconButton aria-label={"some label"} onClick={openSettings (item.id)}>
+                            <Badge color="warning" badgeContent={item.uptodate ? 0 : 1}>
+                                <LogoSettingsDots fill={darkTheme.palette.secondary.main}/>
+                            </Badge>
+                        </IconButton>
+                    </TableCell>
+                </TableRow>
+            )
+
         ))}
     </TableBody>
 }
