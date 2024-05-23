@@ -106,7 +106,7 @@ export function SensorsTable() {
     const [state, setState] = useState<IState> ({
         sensors: sensors,
         settingsPopper: {anchor: undefined, sensor: undefined},
-        updatingSensorId: 4
+        updatingSensorId: -1
     })
 
     const changeItem = ((sensorRec: Sensor.DetailedRecord) => {
@@ -144,6 +144,7 @@ export function SensorsTable() {
                                     onclose={hideSettings}
                                     sensor={state.settingsPopper.sensor}
                                     anotherSensorUpdating={state.updatingSensorId != -1}
+                                    ontempupdatecallback={(sensorId) => setState({...state, updatingSensorId: sensorId})}
                                 />
                                 ) : (<div></div>)
                             }
@@ -155,7 +156,7 @@ export function SensorsTable() {
         ) : <></>            
         }
 
-        <TableContainer component={Paper} sx={{p: 2}}>
+        <TableContainer component={Paper} sx={{p: 2, borderRadius: "20px"}}>
             <Table aria-label="collapsible table">
                 <SensorsTabHeader headerItems={headerItems} styles={{p: 100}}/>
 

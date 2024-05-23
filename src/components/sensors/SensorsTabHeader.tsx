@@ -8,10 +8,10 @@ interface IProps {
 
 export function SensorsTabHeader({headerItems, styles}: IProps) {
     return <TableHead>
-        <TableRow>
+        <TableRow  sx={{borderBottom: "1px solid rgba(255, 255, 255, .07)"}}>
             {headerItems.map((headerItem: string, index: number) =>
                 <TableCell align="left" key={index}>
-                    <Typography variant="h3" color="primary">
+                    <Typography variant="h4" color="primary">
                         {headerItem}
                     </Typography>
 

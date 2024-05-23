@@ -24,7 +24,7 @@ import {ReactComponent as LogoBatteryLevelHigh} from "../../assets/battery-indic
 import {ReactComponent as LogoSettingsDots} from "../../assets/settings-dots.svg"
 import React, {FC} from "react";
 import {darkTheme} from "../mui/darkThemeStyle";
-import {SensorUpdateProgress} from "../popups/elements/UpdateProgress";
+import CircularWithValueLabel from "../popups/elements/UpdateProgress";
 
 interface IProps {
     sensorsData: Sensor.DetailedRecord[],
@@ -95,14 +95,18 @@ function BatteryIndicator({level}: IBatteryProps) {
 }
 
 function UpdatingLabelArea({sensor, columnsCount}: IUpdatingLabelProps) {
-    return <TableCell colSpan={columnsCount} align="center">
-        {/*<div style={{display: "flex"}}>*/}
-        <SensorUpdateProgress percent={10}/>
-        <Typography variant="h4" color="info.main">
-            Updating "{sensor.name}"
-        </Typography>
-        {/*</div>*/}
-    </TableCell>
+    return <TableRow  sx={{borderBottom: "1px solid rgba(255, 255, 255, .07)"}}>
+        <TableCell align="left">
+            <CircularWithValueLabel percent={10}/>
+            {/*</div>*/}
+        </TableCell>
+
+        <TableCell colSpan={columnsCount-1} align="left">
+            <Typography variant="h4" color="info.main">
+                Updating "{sensor.name}"
+            </Typography>
+        </TableCell>
+    </TableRow>
 }
 
 export function SensorsTabBody({sensorsData, onitemchange, onopensettings, updatingItemId, columnsCount}: IProps) {
@@ -126,11 +130,9 @@ export function SensorsTabBody({sensorsData, onitemchange, onopensettings, updat
     return <TableBody>
         {sensorsData.map ((item: Sensor.DetailedRecord) => (
             updatingItem && updatingItem.id === item.id ? (
-                <TableRow>
-                    <UpdatingLabelArea sensor={updatingItem} columnsCount={columnsCount}/>
-                </TableRow>
+                <UpdatingLabelArea sensor={updatingItem} columnsCount={columnsCount}/>
             ) : (
-                <TableRow key={item.id}>
+                <TableRow key={item.id} sx={{borderBottom: "1px solid rgba(255, 255, 255, .07)"}}>
                     {/* type */}
                     <TableCell align="left">
                         <SensorLogo sensorType={item.sensorType}/>

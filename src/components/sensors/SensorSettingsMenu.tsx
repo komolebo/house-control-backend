@@ -12,7 +12,8 @@ interface IProps {
     anotherSensorUpdating: boolean,
     sensor: Sensor.DetailedRecord,
     styles: any,
-    onclose: () => void
+    onclose: () => void,
+    ontempupdatecallback: (id: number) => void
 }
 
 type IMenuElement = {
@@ -21,7 +22,7 @@ type IMenuElement = {
     text: string
 }
 
-export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styles}: IProps) {
+export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styles, ontempupdatecallback}: IProps) {
     const {showPopup, hidePopup} = useGlobalPopupContext();
     const menuItems: IMenuElement[] = 
         !sensor.uptodate ? [
@@ -51,6 +52,7 @@ export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styl
                 showPopup(POPUP_TYPE.UpdateDevice, {
                     onAct: () => {
                         hidePopup();
+                        ontempupdatecallback(sensor.id);
                     }, // update devices data here
                     onClose: () => {
                         hidePopup();

@@ -59,9 +59,9 @@ function QontoStepIcon(props: StepIconProps) {
                 <LogoMarkDone fill={darkTheme.palette.success.main}/>
             ) : (
                 active ? (
-                    <LogoFilledCircle fill={"white"}/>
+                    <LogoFilledCircle fill={"white"} width={20} height={20}/>
                 ) : (
-                    <LogoFilledCircle fill={darkTheme.palette.secondary.main}/>
+                    <LogoFilledCircle fill={darkTheme.palette.secondary.main} width={20} height={20}/>
                 )
             )
         )

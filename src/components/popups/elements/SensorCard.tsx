@@ -89,10 +89,10 @@ export function SensorCard({cardState, sensorType, onclick }: IProps) {
         <div>
             {interactive ?
                 ( cardState === SensorCardState.selected ? (
-                    <LogoCheck fill={color} style={{width: 20, height: 20, float: "right"}} />
+                    <LogoCheck fill={color} width={20} height={20} style={{float: "right"}} />
                 ) : ( 
                     cardState === SensorCardState.unselected ? (
-                        <LogoCircle fill={color} style={{width: 20, height: 20, float: "right"}}/>
+                        <LogoCircle fill={color} width={20} height={20} style={{float: "right"}}/>
                     ) : (
                         <></>
                     )

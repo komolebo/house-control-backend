@@ -36,7 +36,8 @@ export const typographyStyle = {
     fontFamily: "Roboto Regular, 'Roboto', sans-serif",
     h1: {
         fontSize: 32,
-        fontWeight: 300,
+        fontWeight: 600,
+
         // color: "red"
     },
     h2: {

@@ -1,5 +1,5 @@
 import {Box, CircularProgress, CircularProgressProps, Typography} from "@mui/material";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 interface IProps {
     percent: number
@@ -10,7 +10,7 @@ function CircularProgressWithLabel(
 ) {
     return (
         <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-            <CircularProgress size="82px" color="info" variant="determinate" {...props} />
+            <CircularProgress size="54px" color="info" variant="determinate" {...props} />
             <Box
                 sx={{
                     top: 0,
@@ -24,7 +24,7 @@ function CircularProgressWithLabel(
                 }}
             >
                 <Typography
-                    variant="h3"
+                    variant="h5"
                     component="div"
                     color="info.main"
                 >{`${Math.round(props.value)}%`}</Typography>
@@ -33,21 +33,17 @@ function CircularProgressWithLabel(
     );
 }
 
-export default function CircularWithValueLabel() {
-    const [progress, setProgress] = React.useState(10);
+export default function CircularWithValueLabel({percent}: IProps) {
+    const [progress, setProgress] = useState<number>(percent);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const timer = setInterval(() => {
-            setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
-        }, 800);
+            setProgress((prevProgress: number) => (prevProgress >= 100 ? 0 : prevProgress + 1));
+        }, 200);
         return () => {
             clearInterval(timer);
         };
     }, []);
 
     return <CircularProgressWithLabel value={progress} sx={{float: "left"}}/>;
-}
-
-export function SensorUpdateProgress({percent}: IProps) {
-    return <CircularWithValueLabel />
 }
