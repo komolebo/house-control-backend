@@ -46,10 +46,20 @@ export function SensorSettingsMenu({sensor, anotherSensorUpdating, onclose, styl
                     },
                     data: {sensor: sensor}
                 })
-                return;
+                break;
             case Menu.SensorEdition.Update:
                 return;
             case Menu.SensorEdition.Remove:
+                showPopup(POPUP_TYPE.RemoveDevice, {
+                    onAct: () => {
+                        hidePopup();
+                    },
+                    onClose: () => {
+                        hidePopup();
+                        onclose();
+                    },
+                    data: {sensor: sensor}
+                })
                 return;
         }
     }
