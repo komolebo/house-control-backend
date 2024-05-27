@@ -65,7 +65,8 @@ export namespace Sensor {
         battery: number,
         tamper: boolean,
         status: string,
-        uptodate: boolean
+        uptodate: boolean,
+        mac: string
     }
 
     export type EditableRecord = {

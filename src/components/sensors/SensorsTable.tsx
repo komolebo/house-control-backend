@@ -30,7 +30,8 @@ let sensors: Sensor.DetailedRecord[] = [
         state: true,
         tamper: true,
         status: "Connected",
-        uptodate: true
+        uptodate: true,
+        mac: "0x00000000AB"
     },
     {
         id: 1,
@@ -41,7 +42,8 @@ let sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Leak,
         location: "Hall",
         status: "Lost connection",
-        uptodate: false
+        uptodate: false,
+        mac: "0x00000000AB"
     },
     {
         id: 2,
@@ -52,7 +54,8 @@ let sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Doors,
         location: "Doors",
         status: "Connected",
-        uptodate: false
+        uptodate: false,
+        mac: "0x00000000AB"
     },
     {
         id: 3,
@@ -63,7 +66,8 @@ let sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Doors,
         location: "Doors",
         status: "Connected",
-        uptodate: true
+        uptodate: true,
+        mac: "0x00000000AB"
     },
     {
         id: 4,
@@ -74,7 +78,8 @@ let sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Plug,
         location: "Bedroom",
         status: "Connected",
-        uptodate: true
+        uptodate: true,
+        mac: "0x00000000AB"
     },
     {
         id: 5,
@@ -85,7 +90,8 @@ let sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Doors,
         location: "Doors",
         status: "Connected",
-        uptodate: true
+        uptodate: true,
+        mac: "0x00000000AB"
     },
     {
         id: 6,
@@ -96,7 +102,8 @@ let sensors: Sensor.DetailedRecord[] = [
         sensorType: Types.Gas,
         location: "Kitchen",
         status: "Connected",
-        uptodate: true
+        uptodate: true,
+        mac: "0x00000000AB"
     },
 ]
 const headerItems: string[] = [
@@ -128,11 +135,12 @@ export function SensorsTable() {
                 battery: el.battery,
                 name: el.name,
                 location: el.location,
-                sensorType: Sensor.TypeByName[el.type],
+                sensorType: Sensor.TypeByName[el.type.toLowerCase()],
                 state: el.state,
                 tamper: el.tamper,
                 status: el.status,
-                uptodate: !el.to_update
+                uptodate: !el.to_update,
+                mac: el.mac
             })
         })
         setState({...state});
@@ -142,8 +150,9 @@ export function SensorsTable() {
 
     const changeItem = ((sensorRec: Sensor.DetailedRecord) => {
         const { uptodate, sensorType, ...rest } = sensorRec;
+        console.log("changing ", sensorRec)
         sendWsMessage(Sensors.SENSOR_CHANGE, {
-            rest,
+                ...rest,
             to_update: !sensorRec.uptodate,
             type: Sensor.NameByType(sensorRec.sensorType)
         })
