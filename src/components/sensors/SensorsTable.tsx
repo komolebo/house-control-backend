@@ -1,11 +1,13 @@
 import {Sensor} from "../../globals/constants";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ClickAwayListener, Fade, Paper, Popper, Table, TableContainer} from "@mui/material";
 import {SensorsTabHeader} from "./SensorsTabHeader";
 import {SensorsTabBody} from "./SensorsTabBody";
 import {SensorSettingsMenu} from "./SensorSettingsMenu";
 import {darkTheme} from "../mui/darkThemeStyle";
 import Types = Sensor.Types;
+import {sendWsMessage, subscribeWsMessage, unsubscribeWsMessage} from "../../socketio";
+import {Sensors} from "../../globals/messages";
 
 interface IState {
     sensors: Sensor.DetailedRecord[],
@@ -18,7 +20,7 @@ interface ISettingsPopperProps {
     sensor?: Sensor.DetailedRecord
 }
 
-const sensors: Sensor.DetailedRecord[] = [
+let sensors: Sensor.DetailedRecord[] = [
     {
         id: 0,
         battery: 20,
@@ -109,7 +111,42 @@ export function SensorsTable() {
         updatingSensorId: -1
     })
 
+    useEffect(() => {
+        subscribeWsMessage(Sensors.SENSOR_READ_LIST_RESP, handleDataSync);
+        sendWsMessage(Sensors.SENSOR_READ_LIST, {});
+
+        return () => {
+            unsubscribeWsMessage(Sensors.SENSOR_READ_LIST_RESP, handleDataSync);
+        }
+    }, [])
+
+    const handleDataSync = (sensorsData: any) => {
+        state.sensors = [];
+        sensorsData.forEach((el: any) => {
+            state.sensors.push({
+                id: el.id,
+                battery: el.battery,
+                name: el.name,
+                location: el.location,
+                sensorType: Sensor.TypeByName[el.type],
+                state: el.state,
+                tamper: el.tamper,
+                status: el.status,
+                uptodate: !el.to_update
+            })
+        })
+        setState({...state});
+
+        console.log("Received sensors data ", sensorsData);
+    }
+
     const changeItem = ((sensorRec: Sensor.DetailedRecord) => {
+        const { uptodate, sensorType, ...rest } = sensorRec;
+        sendWsMessage(Sensors.SENSOR_CHANGE, {
+            rest,
+            to_update: !sensorRec.uptodate,
+            type: Sensor.NameByType(sensorRec.sensorType)
+        })
         const newArr = state.sensors.map ((item) => item.id === sensorRec.id ? sensorRec : item);
         setState ({...state, sensors: newArr});
     })
@@ -146,7 +183,7 @@ export function SensorsTable() {
                                     anotherSensorUpdating={state.updatingSensorId != -1}
                                     ontempupdatecallback={(sensorId) => setState({...state, updatingSensorId: sensorId})}
                                 />
-                                ) : (<div></div>)
+                                ) : (<></>)
                             }
                         </Paper>
                     </Fade>

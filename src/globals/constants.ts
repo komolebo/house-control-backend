@@ -37,6 +37,25 @@ export namespace Sensor {
         Doors
     }
 
+    export const TypeByName : {[key: string]: Types} = {
+        "gas": Types.Gas,
+        "smoke": Types.Smoke,
+        "leak": Types.Leak,
+        "motion": Types.Motion,
+        "doors": Types.Doors,
+        "plug": Types.Plug,
+    }
+
+    export function NameByType(type: Types) : string {
+        for (const name in TypeByName) {
+            if (TypeByName[name] === type) {
+                return name;
+            }
+        }
+
+        throw new Error('Unknown type provided');
+    }
+
     export type DetailedRecord = {
         id: number,
         sensorType: Sensor.Types,
