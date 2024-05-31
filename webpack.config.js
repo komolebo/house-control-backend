@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/index.tsx',
+    entry: './src/App.tsx',
     output: {
-        filename: "index.js",
+        filename: "main.js",
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: "umd",
         clean: true

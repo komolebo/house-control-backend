@@ -2,8 +2,9 @@
   "name": "tablet-front",
   "version": "0.1.9",
   "private": false,
-  "description": "",
-  "main": "./dist/index.js",
+  "description": "HomeNET tablet access component",
+  "main": "./dist/main.js",
+  "types": "./dist/App.d.ts" ,
   "files": [ "dist"  ],
   "dependencies": {
     "@emotion/react": "^11.11.4",

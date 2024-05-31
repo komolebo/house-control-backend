@@ -5,7 +5,6 @@ import {darkTheme} from "./components/mui/darkThemeStyle";
 import {DarkModeContext} from "./globals/providers/DarkModeProvider";
 import AppMainPage from './components/AppMainPage';
 
-
 function App() {
     const {globalDark} = useContext (DarkModeContext);
     const [darkMode, setDarkMode] = useState<boolean> (globalDark);
