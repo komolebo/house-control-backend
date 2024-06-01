@@ -1,6 +1,6 @@
 {
   "name": "tablet-front",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": false,
   "description": "HomeNET tablet access component",
   "main": "./dist/main.js",
