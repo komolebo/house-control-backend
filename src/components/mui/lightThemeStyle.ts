@@ -15,7 +15,7 @@ lightTheme = createTheme(lightTheme, {
             main: "#2F3542"
         },
         text: {
-            primary: "#2F3542"
+            primary: "#5D5D5D"
         },
         special: {
             main: "#FAFAFB"

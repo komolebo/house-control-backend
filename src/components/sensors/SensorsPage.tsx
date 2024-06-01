@@ -26,7 +26,7 @@ export function SensorsPage() {
 
         <div style={{float: "right"}}>
             <Tooltip title={""}>
-                <IconButton
+                <IconButton key={0}
                     onClick={addDevices}
                 >
                     <LogoAddDev fill={color} stroke="none"/>

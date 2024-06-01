@@ -1,9 +1,10 @@
 import {Typography} from "@mui/material";
 import React from "react";
+import {ReactComponent as LogoSmartHome} from "../assets/smart_home_system.svg"
 
 export function AppBanner() {
     return <div style={{display: "flex"}}>
-        <img src={process.env.PUBLIC_URL + "Resources/smart_home_system.svg"} alt={"Alter app banner"}/>
+        <LogoSmartHome/>
         <Typography variant="h2" 
                     color={'text.primary'}
                     sx={{py: 1, pl: 3, minWidth: "160px"}}>

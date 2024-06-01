@@ -1,5 +1,6 @@
 import {Typography} from "@mui/material";
 import React, {useEffect} from "react";
+import LogoWait from "../../../../assets/ico_wait_big.gif"
 
 interface IProps {
     onact: (foundSensor: boolean) => void
@@ -16,7 +17,7 @@ export function SensorScan({onact}: IProps) {
         display: "flex", flexDirection: "column", alignItems: "center",
         paddingTop: 30
     }}>
-        <img src={process.env.PUBLIC_URL + 'Resources/ico_wait_big.gif'} alt={"Alter ico wait"}/>
+        <img src={LogoWait} alt={"Alter ico wait"}/>
         <Typography variant="h3" color="primary.text">
             <br/><br/>Scanning for sensors
         </Typography>

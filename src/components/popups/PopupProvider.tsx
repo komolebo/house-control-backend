@@ -1,7 +1,6 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 
 import {Card, IconButton, Modal} from "@mui/material";
-import positionStyles from "../../styles/common/position.module.css";
 import AddSensorPopup from "./add/AddSensorPopup";
 import {ReactComponent as LogoClose} from "../../assets/close.svg";
 import {darkTheme} from "../mui/darkThemeStyle";
@@ -121,7 +120,7 @@ export function PopupProvider({children}: IPropGlobalModal) {
                     }}
                     className="blur"
                 >
-                    <div className={positionStyles.floatr} style={{width: 20, height: 20}}
+                    <div style={{width: 20, height: 20, float: "right"}}
                          onClick={() => {
                             popupProps.onClose();
                             hidePopup ();

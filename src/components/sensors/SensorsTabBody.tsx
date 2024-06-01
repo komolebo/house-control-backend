@@ -166,7 +166,7 @@ export function SensorsTabBody({sensorsData, onitemchange, onopensettings, updat
                                 <FormControlLabel
                                     value={item.state}
                                     checked={item.state}
-                                    control={<Switch color="info"/>}
+                                    control={<Switch color="info" key={item.id}/>}
                                     label={item.state ? "On" : "Off"}
                                     labelPlacement="bottom"
                                     onClick={() => changeState (item.id)}
